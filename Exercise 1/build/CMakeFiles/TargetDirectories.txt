@@ -1,5 +1,0 @@
-/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/build/CMakeFiles/ALL_BUILD.dir
-/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/build/CMakeFiles/ZERO_CHECK.dir
-/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/build/MUSI6106Exec/CMakeFiles/MUSI6106Exec.dir
-/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/build/AudioFileIO/CMakeFiles/AudioFileIO.dir
-/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/build/AudioFileIO/sndlib/CMakeFiles/sndlib.dir

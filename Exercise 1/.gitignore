@@ -26,7 +26,7 @@
 *.exe
 *.out
 *.app
-/bld
+/build
 /bin
 *.bak
 /lib/debug/*.exp
