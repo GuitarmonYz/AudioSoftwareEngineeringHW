@@ -18,22 +18,22 @@ int    listFiles ();
 int main(int argc, char* argv[])
 {
     std::string             sInputFilePath,                 //!< file paths
-                            sOutputFilePath;
-
+    sOutputFilePath;
+    
     long long               iInFileLength       = 0;        //!< length of input file
     
     long long               blockLength         = 1024LL;
     
     long long               curPos              = 0;
-
+    
     clock_t                 time                = 0;
-
+    
     float                   **ppfAudioData      = 0;
     
     CAudioFileIf::FileSpec_t fileSpec;
-
+    
     CAudioFileIf            *phAudioFile        = 0;
-
+    
     showClInfo ();
     
     //////////////////////////////////////////////////////////////////////////////
@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
     //////////////////////////////////////////////////////////////////////////////
     // do processing
     cout << "Foo processing" << endl << endl;
-
+    
     //////////////////////////////////////////////////////////////////////////////
     // clean-up
     phAudioFile->destroy(phAudioFile);
@@ -102,7 +102,7 @@ void     showClInfo()
     cout << "GTCMT MUSI6106 Executable" << endl;
     cout << "(c) 2014-2018 by Alexander Lerch" << endl;
     cout  << endl;
-
+    
     return;
 }
 
@@ -122,4 +122,3 @@ int listFiles() {
     }
     return 0;
 }
-

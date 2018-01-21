@@ -107,7 +107,7 @@ Error_t CAudioFileIf::readData( float **ppfAudioData, long long int &iLength )
     // check file properties
     if (!isInitialized())
         return kNotInitializedError;
-    
+
     // update iLength to the number of frames actually read
     iLength = readDataIntern (ppfAudioData, iLength);
     if (iLength < 0)
@@ -172,7 +172,7 @@ Error_t CAudioFileIf::setPosition( long long iFrame /*= 0*/ )
     if (!isInitialized())
         return kNotInitializedError;
 
-    if (iFrame <= 0 || iFrame >= getLengthIntern())
+    if (iFrame < 0 || iFrame >= getLengthIntern())
         return kFunctionInvalidArgsError;
 
     return setPositionIntern(iFrame);

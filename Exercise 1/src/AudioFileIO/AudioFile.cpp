@@ -156,7 +156,7 @@ long long int CAudioFileRaw::readDataIntern( float **ppfAudioData, long long int
         // update frame counters
         iLength        -= iCurrFrames;
         iNumFrames     += iCurrFrames;
-        
+
         assert (iLength >= 0);
     }
 
@@ -255,7 +255,7 @@ CAudioFileSndLib::~CAudioFileSndLib()
 
 Error_t CAudioFileSndLib::openFile( std::string cAudioFileName, FileIoType_t eIoType, FileSpec_t const *psFileSpec /*= 0*/ )
 {
-    FileSpec_t  sSpec;
+    FileSpec_t  sSpec; 
     int iSndLibFileFormat = MUS_RIFF;
 
     if (cAudioFileName.empty())
@@ -398,7 +398,7 @@ long long int CAudioFileSndLib::readDataIntern( float **ppfAudioData, long long 
     int iNumChannels                = getNumChannels();
     long long int iNumFrames2Read   = min (iLength, m_kiDefBlockLength);
     long long int iNumFrames        = 0;
-    
+
     // sanity check
     assert (ppfAudioData || ppfAudioData[0]);
 
@@ -430,7 +430,7 @@ long long int CAudioFileSndLib::readDataIntern( float **ppfAudioData, long long 
         iLength        -= iCurrFrames;
         iNumFrames     += iCurrFrames;
         m_lFrameCnt    += iCurrFrames;
-        
+
         assert (iLength >= 0);
     }
 

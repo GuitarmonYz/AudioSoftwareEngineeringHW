@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib
+# Install script for directory: /Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/3rdparty/sndlib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

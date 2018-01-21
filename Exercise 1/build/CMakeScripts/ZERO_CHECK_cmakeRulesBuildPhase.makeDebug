@@ -2,9 +2,9 @@
 # Custom rules for ZERO_CHECK
 .SUFFIXES: 
 all: \
-	/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/CMakeFiles/ZERO_CHECK
+	/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise\ 1/build/CMakeFiles/ZERO_CHECK
 
 
-/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/CMakeFiles/ZERO_CHECK: 
+/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise\ 1/build/CMakeFiles/ZERO_CHECK: 
 	echo ""
-	make -f /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/CMakeScripts/ReRunCMake.make
+	make -f /Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise\ 1/build/CMakeScripts/ReRunCMake.make

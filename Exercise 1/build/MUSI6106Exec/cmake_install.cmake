@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/MUSI6106Exec
+# Install script for directory: /Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/src/MUSI6106Exec
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

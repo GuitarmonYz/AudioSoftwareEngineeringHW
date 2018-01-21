@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaoyan/workstuff/GatechStuff/6106/Template
+# Install script for directory: /Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,8 +34,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/MUSI6106Exec/cmake_install.cmake")
-  include("/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO/cmake_install.cmake")
+  include("/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/build/MUSI6106Exec/cmake_install.cmake")
+  include("/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/build/AudioFileIO/cmake_install.cmake")
 
 endif()
 
@@ -47,5 +47,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/Exercise 1/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
