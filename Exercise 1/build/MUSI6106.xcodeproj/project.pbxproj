@@ -1,0 +1,1267 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		B8738E424ACD442FBFF25E94 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B7861D1DCA30490E8662E195 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				943C5269CE59453D86201798 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		C5D0024B2D8344EE82D5724D /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C1D5B6ED015644C28A1485BD /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				91936B2035474DC79E58F9E1 /* CMake Rules */,
+			);
+			dependencies = (
+				E8C4FC8EE7BB45CDA89E0CD8 /* PBXTargetDependency */,
+				D42A04B60F6E4701829B0A7F /* PBXTargetDependency */,
+				700CECCF6C8B4661A9009A34 /* PBXTargetDependency */,
+				6234BCD16A4F4DF0A8277257 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		115A3E7FF2CB45A093D9C69E /* s7.c in Sources */ = {isa = PBXBuildFile; fileRef = 6975A24545DE4FEDA4953CE5 /* s7.c */; };
+		39D9BA4ECA9C453CB177FBCF /* vct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D6261B77747A0A70BB9FC /* vct.c */; };
+		8AA6269B17334E36A6688A49 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D5C2F04E2F84FD2AFF77696 /* audio.c */; };
+		8ECE0EC34DBA41ED91949527 /* MUSI6106Exec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B4110FE0F1B4AC9B18A18AB /* MUSI6106Exec.cpp */; };
+		9C0C6A9D5754415D91044889 /* clm.c in Sources */ = {isa = PBXBuildFile; fileRef = CDEA8DEE0838436393D5D179 /* clm.c */; };
+		B0FA9CEE653A406C85D75019 /* xen.c in Sources */ = {isa = PBXBuildFile; fileRef = 02EDF9E72AA14EFABE4D65C7 /* xen.c */; };
+		BEA4263EA1CC4D1F86C206C7 /* clm2xen.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DE3EC5D1751419EB87D775F /* clm2xen.c */; };
+		C6DC314C69854976AAFDAAFB /* sndlib2xen.c in Sources */ = {isa = PBXBuildFile; fileRef = D0CF60D7C168449486C48A02 /* sndlib2xen.c */; };
+		D14652BA48804A2CB81EE640 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = C5432BF8F25D46F5BE128D3A /* io.c */; };
+		E8AAA892604E4AEE96BD2A52 /* sound.c in Sources */ = {isa = PBXBuildFile; fileRef = C23693F8EC924D17BCBFA0D4 /* sound.c */; };
+		F0BDA036799B4931AFFF4D61 /* headers.c in Sources */ = {isa = PBXBuildFile; fileRef = A617E2F56CC643719DCC3694 /* headers.c */; };
+		FB03F3B03AC9466986F19FB1 /* AudioFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C10D9976740D42C2A392148B /* AudioFile.cpp */; };
+		FFD4257AA87B4580B248D495 /* AudioFileIf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0B9F3E62C4C43A3BED19F98 /* AudioFileIf.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3700EFE902EE44C3BA69C09F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8738E424ACD442FBFF25E94;
+			remoteInfo = ZERO_CHECK;
+		};
+		561D0765F7CD4B628C4E51DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB19FF49F38F4DAC8649A424;
+			remoteInfo = sndlib;
+		};
+		59E5D4980A1F4AAC933D124B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8738E424ACD442FBFF25E94;
+			remoteInfo = ZERO_CHECK;
+		};
+		69603C0F72064D1A8A045BC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8738E424ACD442FBFF25E94;
+			remoteInfo = ZERO_CHECK;
+		};
+		726A3FB847434F1B96B9DFD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A7B3449FAFB43EBBE2E094F;
+			remoteInfo = MUSI6106Exec;
+		};
+		7EA3C788387543DBBF5E28AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8738E424ACD442FBFF25E94;
+			remoteInfo = ZERO_CHECK;
+		};
+		96A2343B08FA4C52A10BBB15 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBA216C6FA144A2AB71D85ED;
+			remoteInfo = AudioFileIO;
+		};
+		B1464312D9B84A5280EAC872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB19FF49F38F4DAC8649A424;
+			remoteInfo = sndlib;
+		};
+		F3E10512D7684EDBB3CFC11E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBA216C6FA144A2AB71D85ED;
+			remoteInfo = AudioFileIO;
+		};
+		F7EA23962DC44B458710E9E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFE76B7E25524C1EB0BAB354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB19FF49F38F4DAC8649A424;
+			remoteInfo = sndlib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02EDF9E72AA14EFABE4D65C7 /* xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = xen.c; path = 3rdparty/sndlib/xen.c; sourceTree = SOURCE_ROOT; };
+		0B4110FE0F1B4AC9B18A18AB /* MUSI6106Exec.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MUSI6106Exec.cpp; path = src/MUSI6106Exec/MUSI6106Exec.cpp; sourceTree = SOURCE_ROOT; };
+		0DE3EC5D1751419EB87D775F /* clm2xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = clm2xen.c; path = 3rdparty/sndlib/clm2xen.c; sourceTree = SOURCE_ROOT; };
+		13968C026E74481AA5BD3836 /* AudioFile.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFile.h; path = src/AudioFileIO/AudioFile.h; sourceTree = SOURCE_ROOT; };
+		1D2629F594D14FE1A28D030A /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		4064087DAAF44F4FA1AF8891 /* sndlib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sndlib.h; path = 3rdparty/sndlib/sndlib.h; sourceTree = SOURCE_ROOT; };
+		6975A24545DE4FEDA4953CE5 /* s7.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = s7.c; path = 3rdparty/sndlib/s7.c; sourceTree = SOURCE_ROOT; };
+		7D6BC4B7175B4AB5B050C88E /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = 3rdparty/sndlib/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		83777AA1B0664198B965B875 /* MUSI6106Exec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = MUSI6106Exec; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D8A6CD2A68D4E8CA7D8E909 /* vct.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = vct.h; path = 3rdparty/sndlib/vct.h; sourceTree = SOURCE_ROOT; };
+		9A4D6261B77747A0A70BB9FC /* vct.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = vct.c; path = 3rdparty/sndlib/vct.c; sourceTree = SOURCE_ROOT; };
+		9D5C2F04E2F84FD2AFF77696 /* audio.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = audio.c; path = 3rdparty/sndlib/audio.c; sourceTree = SOURCE_ROOT; };
+		9FAF6620897B4E10B4BB8A91 /* unix-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "unix-config.h"; path = "3rdparty/sndlib/unix-config.h"; sourceTree = SOURCE_ROOT; };
+		A50348146633453F839893AB /* Vector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Vector.h; path = src/inc/Vector.h; sourceTree = SOURCE_ROOT; };
+		A5E54F1A6C2F45DF976346FC /* sndlib-strings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "sndlib-strings.h"; path = "3rdparty/sndlib/sndlib-strings.h"; sourceTree = SOURCE_ROOT; };
+		A617E2F56CC643719DCC3694 /* headers.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = headers.c; path = 3rdparty/sndlib/headers.c; sourceTree = SOURCE_ROOT; };
+		AFB99DB589FA45CCAFAEE4D3 /* libsndlib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libsndlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B60AB2F4E8004DFB895B7256 /* AudioFileIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFileIf.h; path = src/inc/AudioFileIf.h; sourceTree = SOURCE_ROOT; };
+		B8F03E83C89842F79FEF3EB0 /* _sndlib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = _sndlib.h; path = 3rdparty/sndlib/_sndlib.h; sourceTree = SOURCE_ROOT; };
+		C10D9976740D42C2A392148B /* AudioFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AudioFile.cpp; path = src/AudioFileIO/AudioFile.cpp; sourceTree = SOURCE_ROOT; };
+		C1E98EC138434A4F84F47A14 /* Util.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Util.h; path = src/inc/Util.h; sourceTree = SOURCE_ROOT; };
+		C23693F8EC924D17BCBFA0D4 /* sound.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = sound.c; path = 3rdparty/sndlib/sound.c; sourceTree = SOURCE_ROOT; };
+		C5432BF8F25D46F5BE128D3A /* io.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = io.c; path = 3rdparty/sndlib/io.c; sourceTree = SOURCE_ROOT; };
+		CDEA8DEE0838436393D5D179 /* clm.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = clm.c; path = 3rdparty/sndlib/clm.c; sourceTree = SOURCE_ROOT; };
+		D0B9F3E62C4C43A3BED19F98 /* AudioFileIf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AudioFileIf.cpp; path = src/AudioFileIO/AudioFileIf.cpp; sourceTree = SOURCE_ROOT; };
+		D0CF60D7C168449486C48A02 /* sndlib2xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = sndlib2xen.c; path = 3rdparty/sndlib/sndlib2xen.c; sourceTree = SOURCE_ROOT; };
+		D7436498F78642D29AB4F192 /* clm.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = clm.h; path = 3rdparty/sndlib/clm.h; sourceTree = SOURCE_ROOT; };
+		D849C4FA9EDE47649BA1C1FE /* sndlib2xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sndlib2xen.h; path = 3rdparty/sndlib/sndlib2xen.h; sourceTree = SOURCE_ROOT; };
+		E1C973967EFF41B28907E4FF /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		E7460E7DAEDF4D36936B8286 /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = src/MUSI6106Exec/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		F1BEFD1751A941EA891E3ACD /* xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = xen.h; path = 3rdparty/sndlib/xen.h; sourceTree = SOURCE_ROOT; };
+		F332E1B310FD4785827592DA /* mus-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "mus-config.h"; path = "3rdparty/sndlib/mus-config.h"; sourceTree = SOURCE_ROOT; };
+		F3570017B15C4078AD343157 /* clm-strings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "clm-strings.h"; path = "3rdparty/sndlib/clm-strings.h"; sourceTree = SOURCE_ROOT; };
+		F3B792BB23054B60B1130475 /* s7.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = s7.h; path = 3rdparty/sndlib/s7.h; sourceTree = SOURCE_ROOT; };
+		FA45AEB15D744072AF57C3E1 /* libAudioFileIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAudioFileIO.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB9B4A0845F44DD9B4922808 /* CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = src/AudioFileIO/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		FE7BEE9790BB455A87D47742 /* clm2xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = clm2xen.h; path = 3rdparty/sndlib/clm2xen.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		008FCA812D7E49B4B4476311 /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				CDD1F01968DF47AE80AFA98A /* CMake Rules */,
+				1D2629F594D14FE1A28D030A /* CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+		22EDE011F66D4D739539A211 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				13968C026E74481AA5BD3836 /* AudioFile.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		276B7C40690E4BB69C9C10E4 /* AudioFileIO */ = {
+			isa = PBXGroup;
+			children = (
+				3C560ED6945046D78926020A /* Source Files */,
+				22EDE011F66D4D739539A211 /* Header Files */,
+				FB9B4A0845F44DD9B4922808 /* CMakeLists.txt */,
+			);
+			name = AudioFileIO;
+			sourceTree = "<group>";
+		};
+		3C560ED6945046D78926020A /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				C10D9976740D42C2A392148B /* AudioFile.cpp */,
+				D0B9F3E62C4C43A3BED19F98 /* AudioFileIf.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		5793B2E6C5DA48D7A41539A9 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D5C2F04E2F84FD2AFF77696 /* audio.c */,
+				CDEA8DEE0838436393D5D179 /* clm.c */,
+				0DE3EC5D1751419EB87D775F /* clm2xen.c */,
+				A617E2F56CC643719DCC3694 /* headers.c */,
+				C5432BF8F25D46F5BE128D3A /* io.c */,
+				6975A24545DE4FEDA4953CE5 /* s7.c */,
+				D0CF60D7C168449486C48A02 /* sndlib2xen.c */,
+				C23693F8EC924D17BCBFA0D4 /* sound.c */,
+				9A4D6261B77747A0A70BB9FC /* vct.c */,
+				02EDF9E72AA14EFABE4D65C7 /* xen.c */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		59F138ABCC18437A8D561E05 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				BFA539386F804590A3781A58 /* CMake Rules */,
+				E1C973967EFF41B28907E4FF /* CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		5FEA85FC37B74F8198383574 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				B8F03E83C89842F79FEF3EB0 /* _sndlib.h */,
+				F3570017B15C4078AD343157 /* clm-strings.h */,
+				D7436498F78642D29AB4F192 /* clm.h */,
+				FE7BEE9790BB455A87D47742 /* clm2xen.h */,
+				F332E1B310FD4785827592DA /* mus-config.h */,
+				F3B792BB23054B60B1130475 /* s7.h */,
+				A5E54F1A6C2F45DF976346FC /* sndlib-strings.h */,
+				4064087DAAF44F4FA1AF8891 /* sndlib.h */,
+				D849C4FA9EDE47649BA1C1FE /* sndlib2xen.h */,
+				9FAF6620897B4E10B4BB8A91 /* unix-config.h */,
+				8D8A6CD2A68D4E8CA7D8E909 /* vct.h */,
+				F1BEFD1751A941EA891E3ACD /* xen.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		8016DCA1D5C14D09ADEFA1F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83777AA1B0664198B965B875 /* MUSI6106Exec */,
+				FA45AEB15D744072AF57C3E1 /* libAudioFileIO.a */,
+				AFB99DB589FA45CCAFAEE4D3 /* libsndlib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9196109E5D404B58B83E85DC = {
+			isa = PBXGroup;
+			children = (
+				59F138ABCC18437A8D561E05 /* ALL_BUILD */,
+				008FCA812D7E49B4B4476311 /* ZERO_CHECK */,
+				F6463667FFF14A57913EE2F2 /* MUSI6106Exec */,
+				276B7C40690E4BB69C9C10E4 /* AudioFileIO */,
+				DA84EE35FF6247ECA2A45444 /* sndlib */,
+				8016DCA1D5C14D09ADEFA1F3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B7CFE571E5324E20BB2B0BAE /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				B60AB2F4E8004DFB895B7256 /* AudioFileIf.h */,
+				C1E98EC138434A4F84F47A14 /* Util.h */,
+				A50348146633453F839893AB /* Vector.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		BFA539386F804590A3781A58 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		C1F3B43BF7B945E998E77663 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B4110FE0F1B4AC9B18A18AB /* MUSI6106Exec.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		CDD1F01968DF47AE80AFA98A /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		DA84EE35FF6247ECA2A45444 /* sndlib */ = {
+			isa = PBXGroup;
+			children = (
+				5793B2E6C5DA48D7A41539A9 /* Source Files */,
+				5FEA85FC37B74F8198383574 /* Header Files */,
+				7D6BC4B7175B4AB5B050C88E /* CMakeLists.txt */,
+			);
+			name = sndlib;
+			sourceTree = "<group>";
+		};
+		F6463667FFF14A57913EE2F2 /* MUSI6106Exec */ = {
+			isa = PBXGroup;
+			children = (
+				C1F3B43BF7B945E998E77663 /* Source Files */,
+				B7CFE571E5324E20BB2B0BAE /* Header Files */,
+				E7460E7DAEDF4D36936B8286 /* CMakeLists.txt */,
+			);
+			name = MUSI6106Exec;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6A7B3449FAFB43EBBE2E094F /* MUSI6106Exec */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC9DE8C5623347EE99C91F1F /* Build configuration list for PBXNativeTarget "MUSI6106Exec" */;
+			buildPhases = (
+				388CA10FC2314209A2170711 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9FDE7DD9FEC4A6DADAB79A7 /* PBXTargetDependency */,
+				9D30D9A21CCE4E4B90AAC86C /* PBXTargetDependency */,
+				ABEFA60B36F547E4BCDAA3B1 /* PBXTargetDependency */,
+			);
+			name = MUSI6106Exec;
+			productName = MUSI6106Exec;
+			productReference = 83777AA1B0664198B965B875 /* MUSI6106Exec */;
+			productType = "com.apple.product-type.tool";
+		};
+		BB19FF49F38F4DAC8649A424 /* sndlib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B117CD6431D74E4788A91EC1 /* Build configuration list for PBXNativeTarget "sndlib" */;
+			buildPhases = (
+				C06C214497B346EE9E27582B /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E3E3BF2E17B45528FF7EB4A /* PBXTargetDependency */,
+			);
+			name = sndlib;
+			productName = sndlib;
+			productReference = AFB99DB589FA45CCAFAEE4D3 /* libsndlib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DBA216C6FA144A2AB71D85ED /* AudioFileIO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2CEEC7685CF4220B5E6431F /* Build configuration list for PBXNativeTarget "AudioFileIO" */;
+			buildPhases = (
+				6EDFD5737F444DAF91286418 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A58B17F3024D4E8E9E288CF7 /* PBXTargetDependency */,
+				55BC698E73E944D09D3F394E /* PBXTargetDependency */,
+			);
+			name = AudioFileIO;
+			productName = AudioFileIO;
+			productReference = FA45AEB15D744072AF57C3E1 /* libAudioFileIO.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFE76B7E25524C1EB0BAB354 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0920;
+			};
+			buildConfigurationList = 094DDDA510C84B9CA90CC441 /* Build configuration list for PBXProject "MUSI6106" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9196109E5D404B58B83E85DC;
+			projectDirPath = ../;
+			projectRoot = "";
+			targets = (
+				C5D0024B2D8344EE82D5724D /* ALL_BUILD */,
+				B8738E424ACD442FBFF25E94 /* ZERO_CHECK */,
+				6A7B3449FAFB43EBBE2E094F /* MUSI6106Exec */,
+				DBA216C6FA144A2AB71D85ED /* AudioFileIO */,
+				BB19FF49F38F4DAC8649A424 /* sndlib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		91936B2035474DC79E58F9E1 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build -f /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		943C5269CE59453D86201798 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build -f /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		388CA10FC2314209A2170711 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECE0EC34DBA41ED91949527 /* MUSI6106Exec.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EDFD5737F444DAF91286418 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB03F3B03AC9466986F19FB1 /* AudioFile.cpp in Sources */,
+				FFD4257AA87B4580B248D495 /* AudioFileIf.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06C214497B346EE9E27582B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AA6269B17334E36A6688A49 /* audio.c in Sources */,
+				9C0C6A9D5754415D91044889 /* clm.c in Sources */,
+				BEA4263EA1CC4D1F86C206C7 /* clm2xen.c in Sources */,
+				F0BDA036799B4931AFFF4D61 /* headers.c in Sources */,
+				D14652BA48804A2CB81EE640 /* io.c in Sources */,
+				115A3E7FF2CB45A093D9C69E /* s7.c in Sources */,
+				C6DC314C69854976AAFDAAFB /* sndlib2xen.c in Sources */,
+				E8AAA892604E4AEE96BD2A52 /* sound.c in Sources */,
+				39D9BA4ECA9C453CB177FBCF /* vct.c in Sources */,
+				B0FA9CEE653A406C85D75019 /* xen.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E3E3BF2E17B45528FF7EB4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8738E424ACD442FBFF25E94 /* ZERO_CHECK */;
+			targetProxy = 69603C0F72064D1A8A045BC1 /* PBXContainerItemProxy */;
+		};
+		55BC698E73E944D09D3F394E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB19FF49F38F4DAC8649A424 /* sndlib */;
+			targetProxy = B1464312D9B84A5280EAC872 /* PBXContainerItemProxy */;
+		};
+		6234BCD16A4F4DF0A8277257 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB19FF49F38F4DAC8649A424 /* sndlib */;
+			targetProxy = F7EA23962DC44B458710E9E2 /* PBXContainerItemProxy */;
+		};
+		700CECCF6C8B4661A9009A34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBA216C6FA144A2AB71D85ED /* AudioFileIO */;
+			targetProxy = F3E10512D7684EDBB3CFC11E /* PBXContainerItemProxy */;
+		};
+		9D30D9A21CCE4E4B90AAC86C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBA216C6FA144A2AB71D85ED /* AudioFileIO */;
+			targetProxy = 96A2343B08FA4C52A10BBB15 /* PBXContainerItemProxy */;
+		};
+		A58B17F3024D4E8E9E288CF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8738E424ACD442FBFF25E94 /* ZERO_CHECK */;
+			targetProxy = 7EA3C788387543DBBF5E28AB /* PBXContainerItemProxy */;
+		};
+		A9FDE7DD9FEC4A6DADAB79A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8738E424ACD442FBFF25E94 /* ZERO_CHECK */;
+			targetProxy = 3700EFE902EE44C3BA69C09F /* PBXContainerItemProxy */;
+		};
+		ABEFA60B36F547E4BCDAA3B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB19FF49F38F4DAC8649A424 /* sndlib */;
+			targetProxy = 561D0765F7CD4B628C4E51DE /* PBXContainerItemProxy */;
+		};
+		D42A04B60F6E4701829B0A7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A7B3449FAFB43EBBE2E094F /* MUSI6106Exec */;
+			targetProxy = 726A3FB847434F1B96B9DFD9 /* PBXContainerItemProxy */;
+		};
+		E8C4FC8EE7BB45CDA89E0CD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8738E424ACD442FBFF25E94 /* ZERO_CHECK */;
+			targetProxy = 59E5D4980A1F4AAC933D124B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		096ABFB1A31C41A2BE75F43E /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk;
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/build;
+			};
+			name = MinSizeRel;
+		};
+		09C24C7B7D2E432B981A76BA /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/relwithdebinfo;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = (
+					"-DNDEBUG",
+					"-w",
+				);
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO/sndlib;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		0DDEF896956E4DE0B676A640 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk;
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/build;
+			};
+			name = Release;
+		};
+		13C2F0007FD44806B4044744 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/bin/MinSizeRel;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/inc,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  ";
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/MinSizeRel/libAudioFileIO.a,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/MinSizeRel/libsndlib.a,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/MUSI6106Exec;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		38159F8285A845B5B200D423 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/bin/release;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/inc,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  ";
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/release/libAudioFileIO.a,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/release/libsndlib.a,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/MUSI6106Exec;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+		3B6613BED66C4527B607A98A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/release;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = (
+					"-DNDEBUG",
+					"-w",
+				);
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO/sndlib;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+		4DC2E4AEC80D420FAD0137BF /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/MinSizeRel;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		53F3B9240BF441B9AC5D7F00 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		5A923B85D5E24CAEA1813E4E /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk;
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/build;
+			};
+			name = RelWithDebInfo;
+		};
+		5C2F9FA2379D42D49D144B90 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/relwithdebinfo;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		75B4E69E9E5E407AB61E70FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+		797F83D36EA040A9A9D8F1DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/debug;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "   -w  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO/sndlib;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+		8745B9D89797475E8806E871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+		880AF820C65347CEAF914E95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/bin/debug;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/inc,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    ";
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/debug/libAudioFileIO.a,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/debug/libsndlib.a,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/MUSI6106Exec;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+		89DC51D81C5141CFB6E13EB4 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		8EA1636316144AE0B0159FD4 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		9314E851B54C4AF4B3872F7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk;
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/build;
+			};
+			name = Debug;
+		};
+		9BAAA5F74FDE4498B75B466B /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		A6BE2F1BE46B463BAC1E48F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+		AC64141630274023861ADA2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+		AD8B7070558D4F7699F5FED7 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/MinSizeRel;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = (
+					"-DNDEBUG",
+					"-w",
+				);
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO/sndlib;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = MinSizeRel;
+		};
+		B284C399716243A690C091E2 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/bin/relwithdebinfo;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/inc,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG  ";
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/relwithdebinfo/libAudioFileIO.a,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/relwithdebinfo/libsndlib.a,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/MUSI6106Exec;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		BD698AF86793450BB2BE1E3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/debug;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "    ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Debug;
+		};
+		F0DEC43FE68A44A89793B8E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/lib/release;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/src/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/inc,
+					/Users/zhaoyan/workstuff/GatechStuff/6106/Template/3rdparty/sndlib,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  ";
+				OTHER_LIBTOOLFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/zhaoyan/workstuff/GatechStuff/6106/Template/build/AudioFileIO;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+					"$(inherited)",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		094DDDA510C84B9CA90CC441 /* Build configuration list for PBXProject "MUSI6106" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9314E851B54C4AF4B3872F7D /* Debug */,
+				0DDEF896956E4DE0B676A640 /* Release */,
+				096ABFB1A31C41A2BE75F43E /* MinSizeRel */,
+				5A923B85D5E24CAEA1813E4E /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B117CD6431D74E4788A91EC1 /* Build configuration list for PBXNativeTarget "sndlib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				797F83D36EA040A9A9D8F1DD /* Debug */,
+				3B6613BED66C4527B607A98A /* Release */,
+				AD8B7070558D4F7699F5FED7 /* MinSizeRel */,
+				09C24C7B7D2E432B981A76BA /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B7861D1DCA30490E8662E195 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75B4E69E9E5E407AB61E70FC /* Debug */,
+				AC64141630274023861ADA2E /* Release */,
+				53F3B9240BF441B9AC5D7F00 /* MinSizeRel */,
+				8EA1636316144AE0B0159FD4 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C1D5B6ED015644C28A1485BD /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8745B9D89797475E8806E871 /* Debug */,
+				A6BE2F1BE46B463BAC1E48F2 /* Release */,
+				89DC51D81C5141CFB6E13EB4 /* MinSizeRel */,
+				9BAAA5F74FDE4498B75B466B /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D2CEEC7685CF4220B5E6431F /* Build configuration list for PBXNativeTarget "AudioFileIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD698AF86793450BB2BE1E3C /* Debug */,
+				F0DEC43FE68A44A89793B8E3 /* Release */,
+				4DC2E4AEC80D420FAD0137BF /* MinSizeRel */,
+				5C2F9FA2379D42D49D144B90 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EC9DE8C5623347EE99C91F1F /* Build configuration list for PBXNativeTarget "MUSI6106Exec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				880AF820C65347CEAF914E95 /* Debug */,
+				38159F8285A845B5B200D423 /* Release */,
+				13C2F0007FD44806B4044744 /* MinSizeRel */,
+				B284C399716243A690C091E2 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFE76B7E25524C1EB0BAB354 /* Project object */;
+}
