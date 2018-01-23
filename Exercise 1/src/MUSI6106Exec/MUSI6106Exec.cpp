@@ -34,6 +34,8 @@ int main(int argc, char* argv[])
     
     CAudioFileIf            *phAudioFile        = 0;
     
+    std::ofstream outdata;
+    
     showClInfo ();
     
     //////////////////////////////////////////////////////////////////////////////
@@ -42,31 +44,33 @@ int main(int argc, char* argv[])
         sInputFilePath = argv[1];
         sOutputFilePath = argv[2];
     } else {
-        cout << "input argument no legel" << endl;
-        return 0;
+        cout << "input argument is illegal" << endl;
+        return -1;
     }
     //////////////////////////////////////////////////////////////////////////////
     // open the input wave file
     CAudioFileIf::create(phAudioFile);
     phAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
-    
+    phAudioFile->getFileSpec(fileSpec);
     //////////////////////////////////////////////////////////////////////////////
     // allocate memory
     time = clock();
-    ppfAudioData = new float*[2];
-    for (int i = 0; i < 2; i++) {
-        ppfAudioData[i] = new float[1024];
+    ppfAudioData = new float*[fileSpec.iNumChannels];
+    for (int i = 0; i < fileSpec.iNumChannels; i++) {
+        ppfAudioData[i] = new float[blockLength];
     }
     // get audio data and write it to the output file
-    std::ofstream outdata;
     outdata.open(sOutputFilePath);
     long long writePos = 0;
     while (!phAudioFile->isEof()) {
         phAudioFile->readData(ppfAudioData, blockLength);
         phAudioFile->getPosition(curPos);
-        for (int j = 0; j < curPos-writePos; j++) {
+        for (int j = 0; j < blockLength; j++) {
             //cout << ppfAudioData[0][j] << " " << ppfAudioData[1][j] << endl;
-            outdata << ppfAudioData[0][j] << " " << ppfAudioData[1][j] << endl;
+            for (int k = 0; k < fileSpec.iNumChannels; k++) {
+                outdata << ppfAudioData[k][j] << " ";
+            }
+            outdata << endl;
         }
         writePos = curPos;
     }
@@ -74,7 +78,6 @@ int main(int argc, char* argv[])
     //////////////////////////////////////////////////////////////////////////////
     // get audio info and print it to stdout
     phAudioFile->getLength(iInFileLength);
-    phAudioFile->getFileSpec(fileSpec);
     cout << "File Length: " << iInFileLength << endl;
     cout << "File Format: " << fileSpec.eFormat << endl;
     cout << "File Bit stream Type " << fileSpec.eBitStreamType << endl;
@@ -88,7 +91,7 @@ int main(int argc, char* argv[])
     // clean-up
     phAudioFile->destroy(phAudioFile);
     outdata.close();
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < fileSpec.iNumChannels; i++) {
         delete [] ppfAudioData[i];
     }
     delete [] ppfAudioData;
@@ -97,7 +100,7 @@ int main(int argc, char* argv[])
 }
 
 
-void     showClInfo()
+void showClInfo()
 {
     cout << "GTCMT MUSI6106 Executable" << endl;
     cout << "(c) 2014-2018 by Alexander Lerch" << endl;
