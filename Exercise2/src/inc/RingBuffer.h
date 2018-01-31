@@ -105,7 +105,13 @@ public:
         put(tNewValue);
         int cur_write_idx = getWriteIdx();
         cur_write_idx++;
-        m_iCount++;
+        
+        if (m_iCount < m_iBuffLength) {
+            m_iCount++;
+        } else {
+            setReadIdx(getReadIdx() + 1);
+        }
+        
         if (cur_write_idx < m_iBuffLength) {
             setWriteIdx(cur_write_idx);
         } else if (cur_write_idx == m_iBuffLength) {
