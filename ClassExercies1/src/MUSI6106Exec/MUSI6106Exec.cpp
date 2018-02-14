@@ -237,6 +237,10 @@ void test_3(float** testSignal, float** testOutputData, int sig_len, CCombFilter
     float error_threshold = 0.0001;
     bool isPass = true;
     resetTestOutput(testOutputData, sig_len, testNumOfChannel);
+    pIIRInstance->reset();
+    pIIRInstance->init(CCombFilterIf::kCombIIR, 1, sampleRate, testNumOfChannel);
+    pFIRInstance->reset();
+    pFIRInstance->init(CCombFilterIf::kCombFIR, 1, sampleRate, testNumOfChannel);
     pFIRInstance->setParam(CCombFilterIf::kParamGain, 0.5);
     pFIRInstance->setParam(CCombFilterIf::kParamDelay, sig_len / (float)sampleRate);
     pFIRInstance->process(testSignal, testOutputData, sig_len);
