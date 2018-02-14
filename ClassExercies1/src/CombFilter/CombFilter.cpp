@@ -55,26 +55,7 @@ Error_t CCombFilterBase::setParam( CCombFilterIf::FilterParam_t eParam, float fP
     if (!isInParamRange(eParam, fParamValue))
         return kFunctionInvalidArgsError;
     if (eParam == CCombFilterIf::kParamDelay) {
-//        calculate the diff between new delay lenght and current delay length
-//        int len_diff  = (int)(fParamValue - m_afParam[CCombFilterIf::kParamDelay]);
-//        if (len_diff < 0) {
-////            new delay length is shorter just move write pointer
-//            for (int i = 0; i < m_iNumChannels; i++) {
-//                m_ppCRingBuffer[i]->setWriteIdx((int)fParamValue + m_ppCRingBuffer[i]->getReadIdx());
-//            }
-//        } else {
-////            new delay length is longer need to zero out buffer while moving write pointer
-//            for (int i = 0; i < m_iNumChannels; i++) {
-//                for (int j = 0; j < len_diff; j++) {
-//                    m_ppCRingBuffer[i]->putPostInc(0);
-//                }
-//                // m_ppCRingBuffer[i]->setWriteIdx(m_ppCRingBuffer[i]->getWriteIdx()+len_diff);
-//            }
-//        }
         for (int i = 0; i < m_iNumChannels; i++) {
-//            for (int j = 0; j < (int)fParamValue; j++) {
-//                m_ppCRingBuffer[i]->putPostInc(0);
-//            }
             m_ppCRingBuffer[i]->setWriteIdx(m_ppCRingBuffer[i]->getReadIdx()+(int)fParamValue);
         }
     }

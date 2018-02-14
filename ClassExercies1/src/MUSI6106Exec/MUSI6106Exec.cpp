@@ -16,7 +16,8 @@ void    generateUnit(float** testSig, int sig_len, int testNumOfChannel);
 void    resetTestOutput (float** testSignal, int sig_len, int testNumOfChannel);
 void    test_1(float** testSignal, float** testOutputData, int sig_len, CCombFilterIf* pFIRInstance, int delayInSample, int sampleRate, int testNumOfChannel);
 void    test_2(float** testSignal, float** testOutputData, int sig_len, CCombFilterIf* pIIRInstance, int delayInSample, int sampleRate, int testNumOfChannel);
-void    test_3(float** testSignal, float** testOutputData, int sig_len, CCombFilterIf* pFIRInstance, int sampleRate, int testNumOfChannel);
+void    test_3(float** testSignal, float** testOutputData, int sig_len, CCombFilterIf* pIIRInstance, CCombFilterIf* pFIRInstance, int delayInSample, int sampleRate, int testNumOfChannel);
+void    test_4(CCombFilterIf* pIIRInstance);
 /////////////////////////////////////////////////////////////////////////////////
 // main function
 int main(int argc, char* argv[])
@@ -43,8 +44,7 @@ int main(int argc, char* argv[])
     bool                    isTestMode = false;
 
     CAudioFileIf            *phAudioFile = 0;
-    
-    std::fstream            hOutputFile;
+    CAudioFileIf            *pOutputFile = 0;
     CAudioFileIf::FileSpec_t stFileSpec;
 
     CCombFilterIf   *pInstance = 0;
@@ -77,20 +77,16 @@ int main(int argc, char* argv[])
         CAudioFileIf::create(phAudioFile);
         phAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
         
+        CAudioFileIf::create(pOutputFile);
+        
+        
         if (!phAudioFile->isOpen())
         {
             cout << "Wave file open error!"<<endl;
             return -1;
         }
         phAudioFile->getFileSpec(stFileSpec);
-        
-        hOutputFile.open(sOutputFilePath.c_str(), std::ios::out);
-        
-        if (!hOutputFile.is_open())
-        {
-            cout << "Text file open error!";
-            return -1;
-        }
+        pOutputFile->openFile(sOutputFilePath, CAudioFileIf::kFileWrite, &stFileSpec);
     }
     
     //////////////////////////////////////////////////////////////////////////////
@@ -128,21 +124,15 @@ int main(int argc, char* argv[])
     if (isTestMode) {
         test_1(testSignal, testOutputData, testSigLenInSample, pFIRInstance, testSigDelayInSample, testSampleRate, testNumOfChannel);
         test_2(testSignal, testOutputData, testSigLenInSample, pIIRInstance, testSigDelayInSample, testSampleRate, testNumOfChannel);
-        test_3(testSignal, testOutputData, testSigLenInSample, pFIRInstance, testSampleRate, testNumOfChannel);
+        test_3(testSignal, testOutputData, testSigLenInSample, pIIRInstance, pFIRInstance, testSigDelayInSample, testSampleRate, testNumOfChannel);
+        test_4(pIIRInstance);
     } else {
         while (!phAudioFile->isEof())
         {
             long long iNumFrames = kBlockSize;
             phAudioFile->readData(ppfAudioData, iNumFrames);
             pInstance->process(ppfAudioData, ppfOutputData, iNumFrames);
-            for (int i = 0; i < iNumFrames; i++)
-            {
-                for (int c = 0; c < stFileSpec.iNumChannels; c++)
-                {
-                    hOutputFile << ppfOutputData[c][i] << "\t";
-                }
-                hOutputFile << endl;
-            }
+            pOutputFile->writeData(ppfOutputData, iNumFrames);
         }
     }
     //////////////////////////////////////////////////////////////////////////////
@@ -161,8 +151,8 @@ int main(int argc, char* argv[])
         delete[] testOutputData;
     } else {
         CAudioFileIf::destroy(phAudioFile);
+        CAudioFileIf::destroy(pOutputFile);
         CCombFilterIf::destroy(pInstance);
-        hOutputFile.close();
         
         for (int i = 0; i < stFileSpec.iNumChannels; i++)
             delete[] ppfAudioData[i];
@@ -243,37 +233,49 @@ void test_2(float** testSignal, float** testOutputData, int sig_len, CCombFilter
     }
 }
 // test on FIR, check reset function by varying delay length
-void test_3(float** testSignal, float** testOutputData, int sig_len, CCombFilterIf* pFIRInstance, int sampleRate, int testNumOfChannel) {
-    int delayInSample = 0;
+void test_3(float** testSignal, float** testOutputData, int sig_len, CCombFilterIf* pIIRInstance, CCombFilterIf* pFIRInstance, int delayInSample, int sampleRate, int testNumOfChannel) {
     float error_threshold = 0.0001;
-    resetTestOutput(testOutputData, sig_len, testNumOfChannel);
     bool isPass = true;
+    resetTestOutput(testOutputData, sig_len, testNumOfChannel);
     pFIRInstance->setParam(CCombFilterIf::kParamGain, 0.5);
-    pFIRInstance->setParam(CCombFilterIf::kParamDelay, delayInSample/(float)sampleRate);
+    pFIRInstance->setParam(CCombFilterIf::kParamDelay, sig_len / (float)sampleRate);
     pFIRInstance->process(testSignal, testOutputData, sig_len);
-//    for (int i = 0; i < testNumOfChannel; i++) {
-//        for (int j = 0; j < delayInSample; j++) {
-//            if (testOutputData[i][j] < 1 - error_threshold || testOutputData[i][j] > 1 + error_threshold ) isPass = false;
-//        }
-//        for (int j = delayInSample + 1; j < sig_len; j++) {
-//            if (testOutputData[i][j] < 1.5 - error_threshold || testOutputData[i][j] > 1.5 + error_threshold) isPass = false;
-//        }
-//    }
-//
+    
     for (int i = 0; i < testNumOfChannel; i++) {
         for (int j = 0; j < sig_len; j++) {
-            cout << testOutputData[i][j] << endl;
-            
+            if (testOutputData[i][j] < 1 - error_threshold || testOutputData[i][j] > 1 + error_threshold) isPass = false;
         }
-        cout << "one channel over" << endl;
     }
-//    pFIRInstance->setParam(CCombFilterIf::kParamDelay, delayInSample/(float)sampleRate/2.0);
+    
+    resetTestOutput(testOutputData, sig_len, testNumOfChannel);
+    pIIRInstance->setParam(CCombFilterIf::kParamGain, 0.5);
+    pIIRInstance->setParam(CCombFilterIf::kParamDelay, sig_len / (float)sampleRate);
+    pIIRInstance->process(testSignal, testOutputData, sig_len);
+    for (int i = 0; i < testNumOfChannel; i++) {
+        for (int j = 0; j < sig_len; j++) {
+            if (testOutputData[i][j] < 1 - error_threshold || testOutputData[i][j] > 1 + error_threshold) isPass = false;
+        }
+    }
+    //    pFIRInstance->setParam(CCombFilterIf::kParamDelay, delayInSample/(float)sampleRate/2.0);
     if (isPass) {
         cout << "test case 3 passed" << endl;
     } else {
         cout << "test case 3 failed" << endl;
     }
 }
+
+// test whether the in range check prevent iir from exploding
+void test_4(CCombFilterIf* pIIRInstance){
+    float highGain = 12;
+    if (pIIRInstance->setParam(CCombFilterIf::kParamGain, highGain)==kNoError) {
+        cout << "test case 4 failed" << endl;
+    } else {
+        
+        cout << "test case 4 passed" << endl;
+    }
+}
+
+
 
 
 void     showClInfo()
