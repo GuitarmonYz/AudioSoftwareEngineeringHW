@@ -100,6 +100,8 @@ int main(int argc, char* argv[])
         }
         pInstance->setParam(CCombFilterIf::kParamGain, gain);
         pInstance->setParam(CCombFilterIf::kParamDelay, delay);
+        cout << delay << endl;
+        cout << pInstance->getParam(CCombFilterIf::kParamDelay) << endl;
         
     }
     

@@ -19,12 +19,9 @@ CCombFilterBase::CCombFilterBase( int iMaxDelayInFrames, int iNumChannels ) :
 
     assert(iMaxDelayInFrames > 0);
     assert(iNumChannels > 0);
-    m_afParam[CCombFilterIf::kParamDelay] = 0;
-    m_afParam[CCombFilterIf::kParamGain] = 0;
 //    init parameter range
     m_aafParamRange[CCombFilterIf::kParamGain][0] = std::numeric_limits<float>::min();
     m_aafParamRange[CCombFilterIf::kParamGain][1] = std::numeric_limits<float>::max();
-    m_aafParamRange[CCombFilterIf::kParamDelay][0] = 0;
     m_aafParamRange[CCombFilterIf::kParamDelay][1] = (float)iMaxDelayInFrames;
 //    init ringbuffer for iNumChannels
     m_ppCRingBuffer = new CRingBuffer<float> *[iNumChannels];
@@ -57,26 +54,16 @@ Error_t CCombFilterBase::setParam( CCombFilterIf::FilterParam_t eParam, float fP
 {
     if (!isInParamRange(eParam, fParamValue))
         return kFunctionInvalidArgsError;
-    std::cout<<fParamValue<<std::endl;
-    std::cout<<m_afParam[CCombFilterIf::kParamDelay]<<std::endl;
     if (eParam == CCombFilterIf::kParamDelay) {
-        
-        int iNumAdditionalTaps  = CUtil::float2int<int>(fParamValue - m_afParam[CCombFilterIf::kParamDelay]);
-        if (iNumAdditionalTaps < 0)
-        {
-            for (int c = 0; c < m_iNumChannels; c++)
-            {
-                m_ppCRingBuffer[c]->setWriteIdx(CUtil::float2int<int>(fParamValue) + m_ppCRingBuffer[c]->getReadIdx());
+        int len_diff  = (int)(fParamValue - m_afParam[CCombFilterIf::kParamDelay]);
+        if (len_diff < 0) {
+            for (int i = 0; i < m_iNumChannels; i++) {
+                m_ppCRingBuffer[i]->setWriteIdx((int)fParamValue + m_ppCRingBuffer[i]->getReadIdx());
             }
-        }
-        else
-        {
-            
-            for (int c = 0; c < m_iNumChannels; c++)
-            {
-                for (int i = 0; i < iNumAdditionalTaps; i++)
-                {
-                    m_ppCRingBuffer[c]->putPostInc(0.F);
+        } else {
+            for (int i = 0; i < m_iNumChannels; i++) {
+                for (int j = 0; j < len_diff; j++) {
+                    m_ppCRingBuffer[i]->putPostInc(0);
                 }
             }
         }
@@ -108,8 +95,8 @@ Error_t CCombFilterFir::process( float **ppfInputBuffer, float **ppfOutputBuffer
 {
     for (int i = 0; i < m_iNumChannels; i++) {
         for (int j = 0; j < iNumberOfFrames; j++) {
-            m_ppCRingBuffer[i]->putPostInc(ppfInputBuffer[i][j]);
             ppfOutputBuffer[i][j] = ppfInputBuffer[i][j] + m_afParam[CCombFilterIf::kParamGain] * m_ppCRingBuffer[i]->getPostInc();
+            m_ppCRingBuffer[i]->putPostInc(ppfInputBuffer[i][j]);
         }
     }
     return kNoError;
@@ -117,17 +104,28 @@ Error_t CCombFilterFir::process( float **ppfInputBuffer, float **ppfOutputBuffer
 
 CCombFilterIir::CCombFilterIir (int iMaxDelayInFrames, int iNumChannels) : CCombFilterBase(iMaxDelayInFrames, iNumChannels)
 {
-    m_aafParamRange[CCombFilterIf::kParamGain][0] = (float)-1;
-    m_aafParamRange[CCombFilterIf::kParamGain][1] = (float) 1;
+    m_aafParamRange[CCombFilterIf::kParamGain][0] = -1;
+    m_aafParamRange[CCombFilterIf::kParamGain][1] = 1;
 }
 
 Error_t CCombFilterIir::process( float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
 {
-    for (int i = 0; i < m_iNumChannels; i++) {
-        for (int j = 0; j < iNumberOfFrames; j++) {
+//    for (int i = 0; i < m_iNumChannels; i++) {
+//        for (int j = 0; j < iNumberOfFrames; j++) {
+//            ppfOutputBuffer[i][j] = ppfInputBuffer[i][j] + m_afParam[CCombFilterIf::kParamGain] * m_ppCRingBuffer[i]->getPostInc();
+//            m_ppCRingBuffer[i]->putPostInc(ppfOutputBuffer[i][j]);
+//        }
+//    }
+    for (int i = 0; i < m_iNumChannels; i++)
+    {
+        for (int j = 0; j < iNumberOfFrames; j++ )
+        {
+            
+            // y(n)=x(n)+g*Delayline(10);
             ppfOutputBuffer[i][j] = ppfInputBuffer[i][j] + m_afParam[CCombFilterIf::kParamGain] * m_ppCRingBuffer[i]->getPostInc();
             m_ppCRingBuffer[i]->putPostInc(ppfOutputBuffer[i][j]);
         }
+        
     }
     return kNoError;
 }
