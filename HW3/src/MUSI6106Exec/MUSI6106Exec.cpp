@@ -5,6 +5,7 @@
 #include "MUSI6106Config.h"
 
 #include "AudioFileIf.h"
+#include "Vibrato.h"
 
 using std::cout;
 using std::endl;
@@ -28,6 +29,7 @@ int main(int argc, char* argv[])
     CAudioFileIf            *phAudioFile = 0;
     std::fstream            hOutputFile;
     CAudioFileIf::FileSpec_t stFileSpec;
+    CVibrato                *pcVibrato = 0;
 
     showClInfo();
 
@@ -63,7 +65,11 @@ int main(int argc, char* argv[])
         cout << "Text file open error!";
         return -1;
     }
-
+    ///////////////////
+    // viberato related
+    CVibrato::create(pcVibrato);
+    
+    
     //////////////////////////////////////////////////////////////////////////////
     // allocate memory
     ppfAudioData = new float*[stFileSpec.iNumChannels];

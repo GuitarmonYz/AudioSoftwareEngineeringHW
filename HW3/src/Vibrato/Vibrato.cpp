@@ -11,36 +11,47 @@
 #include "Lfo.h"
 #include "Vibrato.h"
 
-CVibrato::CVibrato(float fSampleRateInHz, float iMaxDelayInS,int iNumChannels) :
-    m_pCLfo(0),
-    m_ppCRingBuffer(0),
-    m_iNumChannels(iNumChannels),
-    m_fSampleRate(fSampleRateInHz)
+CVibrato::CVibrato() :
+m_pCLfo(0),
+m_ppCRingBuffer(0),
+m_iNumChannels(0),
+m_fSampleRate(0)
 {
-    int iMaxDelayInFrames = iMaxDelayInS * fSampleRateInHz;
-    m_ppCRingBuffer = new CRingBuffer<float> *[iNumChannels];
-    for (int i = 0; i < iNumChannels; i++) {
-        m_ppCRingBuffer[i] = new CRingBuffer<float>(iMaxDelayInFrames);
-    }
+    
 }
 
-CVibrato::~CVibrato() {
+Error_t CVibrato::create(CVibrato *&cpCVibrato) {
+    cpCVibrato = new CVibrato();
+    return kNoError;
+}
+
+Error_t CVibrato::destroy(CVibrato *&cpCVibrato) {
     if (m_ppCRingBuffer) {
         for (int i = 0; i < m_iNumChannels; i++) {
             delete m_ppCRingBuffer[i];
         }
     }
     delete [] m_ppCRingBuffer;
+    return kNoError;
+}
+
+Error_t CVibrato::init(float fSampleRateInHz, float fMaxWidthInS, int iNumChannels, float fModWidth, float fModFreq) {
+    m_fSampleRate = fSampleRateInHz;
+    m_iNumChannels = iNumChannels;
+    m_afParam[FilterParam_t::kParamModWidth] = fModWidth;
+    m_afParam[FilterParam_t::kParamModFreq] = fModFreq;
+    int iMaxWidthInSample = floor(fMaxWidthInS * fSampleRateInHz);
+    m_ppCRingBuffer = new CRingBuffer<float> *[iNumChannels];
+    for (int i = 0; i < iNumChannels; i++) {
+        m_ppCRingBuffer[i] = new CRingBuffer<float>(iMaxWidthInSample*2 + 2);
+    }
+    return kNoError;
 }
 
 Error_t CVibrato::setParam(CVibrato::FilterParam_t eParam, float fParamValue) {
     switch (eParam) {
         case FilterParam_t::kParamModWidth :
             m_afParam[eParam] = fParamValue;
-            break;
-        case FilterParam_t::kParamDelay :
-            m_afParam[eParam] = fParamValue;
-            
             break;
         case FilterParam_t::kParamModFreq :
             m_afParam[eParam] = fParamValue;
@@ -63,7 +74,9 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int i
         for (int j = 0; j < iNumberOfFrames; j++) {
             m_ppCRingBuffer[i]->putPostInc(ppfInputBuffer[i][j]);
             ppfOutputBuffer[i][j] = m_ppCRingBuffer[i]->get(m_afParam[FilterParam_t::kParamModWidth] * m_pCLfo->getLFOVal());
+            m_ppCRingBuffer[i]->getPostInc();
         }
     }
     return kNoError;
 }
+

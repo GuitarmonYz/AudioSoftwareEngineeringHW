@@ -14,9 +14,9 @@ public:
         m_pCRingBuffer = new CRingBuffer<float>(bufferLength);
         float waveTableBuffer[bufferLength];
         CSynthesis::generateSine(waveTableBuffer, modFreq, sampleRateInHz, bufferLength);
-            for (int i = 0; i < bufferLength; i++) {
-                m_pCRingBuffer-> putPostInc(waveTableBuffer[i]);
-            }
+        for (int i = 0; i < bufferLength; i++) {
+            m_pCRingBuffer-> putPostInc(waveTableBuffer[i]);
+        }
     }
     
     ~CLfo () {
@@ -40,3 +40,4 @@ private:
 };
 
 #endif // __Lfo_hdr__
+
