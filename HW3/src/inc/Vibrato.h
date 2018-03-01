@@ -15,7 +15,7 @@ class CRingBuffer;
 class CVibrato
 {
 public:
-    enum FilterParam_t
+    enum VibratoParam_t
     {
         kParamModWidth,
         kParamModFreq,
@@ -26,8 +26,8 @@ public:
     Error_t initLFO ();
     Error_t init(float fSampleRateInHz, float fMaxWithInS, int iNumChannels, float fModWidth=0.01, float fModFreq=20);
     Error_t reset ();
-    Error_t setParam (FilterParam_t eParam, float fParamValue);
-    float   getParam (FilterParam_t eParam) const;
+    Error_t setParam (VibratoParam_t eParam, float fParamValue);
+    float   getParam (VibratoParam_t eParam) const;
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
     
 private:
