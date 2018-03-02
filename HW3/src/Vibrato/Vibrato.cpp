@@ -44,7 +44,7 @@ Error_t CVibrato::init(int iSampleRateInHz, float fMaxWidthInS, int iNumChannels
     m_iNumChannels = iNumChannels;
     m_afParam[VibratoParam_t::kParamModWidth] = fModWidth;
     m_afParam[VibratoParam_t::kParamModFreq] = fModFreq;
-    m_pCLfo = new CLfo(fModFreq);
+    m_pCLfo = new CLfo(fModFreq, m_fSampleRate);
     int iMaxWidthInSample = floor(fMaxWidthInS * iSampleRateInHz);
     m_ppCRingBuffer = new CRingBuffer<float> *[iNumChannels];
     for (int i = 0; i < iNumChannels; i++) {
@@ -93,6 +93,7 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int i
     for (int i = 0; i < m_iNumChannels; i++) {
         for (int j = 0; j < iNumberOfFrames; j++) {
             m_ppCRingBuffer[i]->putPostInc(ppfInputBuffer[i][j]);
+            int test = m_pCLfo->getLFOVal();
             ppfOutputBuffer[i][j] = m_ppCRingBuffer[i]->get(m_afParam[VibratoParam_t::kParamModWidth] * m_pCLfo->getLFOVal());
             m_ppCRingBuffer[i]->getPostInc();
         }

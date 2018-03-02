@@ -47,12 +47,12 @@ int main(int argc, char* argv[])
 //        sInputFilePath = argv[1];
 //        sOutputFilePath = sInputFilePath + ".txt";
 //    }
-    sInputFilePath = "./test.wav";
+    sInputFilePath = "./piano.wav";
     sOutputFilePath = "./output.wav";
     int iSampleRateInHz = 44100;
-    float fMaxWidthInS = 0.01f;
-    float fWidth = 0.001;
-    float fModFreq = 10;
+    float fMaxWidthInS = 0.1f;
+    float fWidth = 0.0025f;
+    float fModFreq = 5;
 
     //////////////////////////////////////////////////////////////////////////////
     // open the input wave file
@@ -80,11 +80,9 @@ int main(int argc, char* argv[])
     ///////////////////
     // viberato related
     CVibrato::create(pcVibrato);
-    pcVibrato->init(iSampleRateInHz, fMaxWidthInS, iNumChannels);
-    pcVibrato->setParam(CVibrato::kParamModWidth, fWidth);
-    pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
-    
-    
+    pcVibrato->init(iSampleRateInHz, fMaxWidthInS, iNumChannels, fWidth, fModFreq);
+//    pcVibrato->setParam(CVibrato::kParamModWidth, fWidth);
+//    pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
     //////////////////////////////////////////////////////////////////////////////
     // allocate memory
     ppfAudioData = new float*[stFileSpec.iNumChannels];
@@ -93,26 +91,18 @@ int main(int argc, char* argv[])
         ppfAudioData[i] = new float[kBlockSize];
         ppfOutputData[i] = new float[kBlockSize];
     }
-    
-    time = clock();
+//    time = clock();
     //////////////////////////////////////////////////////////////////////////////
     // get audio data and write it to the output file
     while (!phAudioFile->isEof())
     {
         long long iNumFrames = kBlockSize;
-        
-        
-
-        cout << "\r" << "reading and writing";
-
-        
         phAudioFile->readData(ppfAudioData, iNumFrames);
         pcVibrato->process(ppfAudioData, ppfOutputData, iNumFrames);
         phOutputFile->writeData(ppfOutputData, iNumFrames);
-          
     }
 
-    cout << "\nreading/writing done in: \t" << (clock() - time)*1.F / CLOCKS_PER_SEC << " seconds." << endl;
+//    cout << "\nreading/writing done in: \t" << (clock() - time)*1.F / CLOCKS_PER_SEC << " seconds." << endl;
 
     //////////////////////////////////////////////////////////////////////////////
     // clean-up

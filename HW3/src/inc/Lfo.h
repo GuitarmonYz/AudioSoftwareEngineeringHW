@@ -10,12 +10,13 @@
 class CLfo
 {
 public:
-    CLfo (float modFreq):
+    CLfo (float modFreq, int sampleRate):
     m_fModFreq(modFreq),
+    m_iSampleRateInHz(sampleRate),
     m_fCurPos(0)
     {
         m_iFixedBufferLength = m_fFixedSampleRateInHz / m_fFixedModFreq;
-        m_fIncrement = m_iFixedBufferLength / (1 / modFreq);
+        m_fIncrement = m_iFixedBufferLength / (sampleRate / modFreq);
         m_pCRingBuffer = new CRingBuffer<float>(m_iFixedBufferLength);
         float waveTableBuffer[m_iFixedBufferLength];
         CSynthesis::generateSine(waveTableBuffer, m_fFixedModFreq, m_fFixedSampleRateInHz, m_iFixedBufferLength);
@@ -32,7 +33,7 @@ public:
     
     Error_t setLfoRate(float modFreq) {
         m_fModFreq = modFreq;
-        m_fIncrement = m_iFixedBufferLength / (1 / modFreq);
+        m_fIncrement = m_iFixedBufferLength / (m_iSampleRateInHz / modFreq);
         return kNoError;
     }
     
@@ -55,6 +56,7 @@ private:
     const float         m_fFixedSampleRateInHz = 44100;
     int                 m_iFixedBufferLength;
     float               m_fModFreq;
+    int                 m_iSampleRateInHz;
     float               m_fIncrement;
     float               m_fCurPos;
 };
