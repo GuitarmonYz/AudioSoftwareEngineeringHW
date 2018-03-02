@@ -22,61 +22,39 @@ int main(int argc, char* argv[])
 
     static const int        kBlockSize = 1024;
 
-    clock_t                 time = 0;
-
     float                   **ppfAudioData = 0;
     float                   **ppfOutputData = 0;
 
     CAudioFileIf            *phAudioFile = 0;
     CAudioFileIf            *phOutputFile = 0;
-//    std::fstream            hOutputFile;
     CAudioFileIf::FileSpec_t stFileSpec;
     CVibrato                *pcVibrato = 0;
-
-    showClInfo();
-
-    //////////////////////////////////////////////////////////////////////////////
-    // parse command line arguments
-//    if (argc < 2)
-//    {
-//        cout << "Missing audio input path!";
-//        return -1;
-//    }
-//    else
-//    {
-//        sInputFilePath = argv[1];
-//        sOutputFilePath = sInputFilePath + ".txt";
-//    }
+    
+    int                     iNumChannels = 0;
+    int                     iSampleRateInHz = 44100;
+    float                   fMaxWidthInS = 0.1f;
+    float                   fWidth = 0.0002f;
+    float                   fModFreq = 5;
+    
     sInputFilePath = "./piano.wav";
     sOutputFilePath = "./output.wav";
-    int iSampleRateInHz = 44100;
-    float fMaxWidthInS = 0.1f;
-    float fWidth = 0.0002f;
-    float fModFreq = 5;
-
+    
+    showClInfo();
     //////////////////////////////////////////////////////////////////////////////
     // open the input wave file
     CAudioFileIf::create(phAudioFile);
     phAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
-    CAudioFileIf::create(phOutputFile);
     if (!phAudioFile->isOpen())
     {
         cout << "Wave file open error!";
         return -1;
     }
     phAudioFile->getFileSpec(stFileSpec);
-    phOutputFile->openFile(sOutputFilePath, CAudioFileIf::kFileWrite, &stFileSpec);
-    int iNumChannels = stFileSpec.iNumChannels;
-    
-    
+    iNumChannels = stFileSpec.iNumChannels;
     //////////////////////////////////////////////////////////////////////////////
-    // open the output text file
-//    hOutputFile.open(sOutputFilePath.c_str(), std::ios::out);
-//    if (!hOutputFile.is_open())
-//    {
-//        cout << "Text file open error!";
-//        return -1;
-//    }
+    // prepare the output wav file
+    CAudioFileIf::create(phOutputFile);
+    phOutputFile->openFile(sOutputFilePath, CAudioFileIf::kFileWrite, &stFileSpec);
     ///////////////////
     // viberato related initialization
     CVibrato::create(pcVibrato);
@@ -91,7 +69,6 @@ int main(int argc, char* argv[])
         ppfAudioData[i] = new float[kBlockSize];
         ppfOutputData[i] = new float[kBlockSize];
     }
-
     //////////////////////////////////////////////////////////////////////////////
     // process file
     while (!phAudioFile->isEof())
@@ -101,8 +78,6 @@ int main(int argc, char* argv[])
         pcVibrato->process(ppfAudioData, ppfOutputData, iNumFrames);
         phOutputFile->writeData(ppfOutputData, iNumFrames);
     }
-
-
     //////////////////////////////////////////////////////////////////////////////
     // clean-up
     CAudioFileIf::destroy(phAudioFile);
@@ -115,18 +90,15 @@ int main(int argc, char* argv[])
         delete[] ppfOutputData[i];
     delete[] ppfOutputData;
     ppfAudioData = 0;
-
+    ppfOutputData = 0;
     return 0;
-
 }
-
 
 void     showClInfo()
 {
     cout << "GTCMT MUSI6106 Executable" << endl;
     cout << "(c) 2014-2018 by Alexander Lerch" << endl;
     cout  << endl;
-
     return;
 }
 
