@@ -23,7 +23,6 @@ public:
     };
     static Error_t create(CVibrato*& cpCVibrato);
     static Error_t destroy(CVibrato*& cpCVibrato);
-    Error_t initLFO ();
     Error_t init(float fSampleRateInHz, float fMaxWithInS, int iNumChannels, float fModWidth=0.01, float fModFreq=20);
     Error_t reset ();
     Error_t setParam (VibratoParam_t eParam, float fParamValue);

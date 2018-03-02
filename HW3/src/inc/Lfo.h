@@ -10,12 +10,17 @@
 class CLfo
 {
 public:
-    CLfo (int bufferLength) {
-        m_pCRingBuffer = new CRingBuffer<float>(bufferLength);
-        float waveTableBuffer[bufferLength];
-        CSynthesis::generateSine(waveTableBuffer, modFreq, sampleRateInHz, bufferLength);
-        for (int i = 0; i < bufferLength; i++) {
-            m_pCRingBuffer-> putPostInc(waveTableBuffer[i]);
+    CLfo (float modFreq):
+    m_fModFreq(modFreq),
+    m_fCurPos(0)
+    {
+        m_iFixedBufferLength = m_fFixedSampleRateInHz / m_fFixedModFreq;
+        m_fIncrement = m_iFixedBufferLength / (1 / modFreq);
+        m_pCRingBuffer = new CRingBuffer<float>(m_iFixedBufferLength);
+        float waveTableBuffer[m_iFixedBufferLength];
+        CSynthesis::generateSine(waveTableBuffer, m_fFixedModFreq, m_fFixedSampleRateInHz, m_iFixedBufferLength);
+        for (int i = 0; i < m_iFixedBufferLength; i++) {
+            m_pCRingBuffer -> putPostInc(waveTableBuffer[i]);
         }
     }
     
@@ -25,18 +30,33 @@ public:
         }
     }
     
+    Error_t setLfoRate(float modFreq) {
+        m_fModFreq = modFreq;
+        m_fIncrement = m_iFixedBufferLength / (1 / modFreq);
+        return kNoError;
+    }
+    
     Error_t reset() {
         
         return kNoError;
     }
     
     float getLFOVal() {
-        return m_pCRingBuffer->getPostInc();
+        float res = m_pCRingBuffer->get(m_fCurPos);
+        m_fCurPos += m_fIncrement;
+        if (m_fCurPos >= m_iFixedBufferLength) {
+            m_fCurPos -= m_iFixedBufferLength;
+        }
+        return res;
     }
 private:
     CRingBuffer<float>  *m_pCRingBuffer;
-    float               modFreq;
-    float               sampleRateInHz;
+    const float         m_fFixedModFreq = 10;
+    const float         m_fFixedSampleRateInHz = 44100;
+    int                 m_iFixedBufferLength;
+    float               m_fModFreq;
+    float               m_fIncrement;
+    float               m_fCurPos;
 };
 
 #endif // __Lfo_hdr__
