@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
     sOutputFilePath = "./output.wav";
     int iSampleRateInHz = 44100;
     float fMaxWidthInS = 0.1f;
-    float fWidth = 0.0025f;
+    float fWidth = 0.0002f;
     float fModFreq = 5;
 
     //////////////////////////////////////////////////////////////////////////////
@@ -78,22 +78,22 @@ int main(int argc, char* argv[])
 //        return -1;
 //    }
     ///////////////////
-    // viberato related
+    // viberato related initialization
     CVibrato::create(pcVibrato);
-    pcVibrato->init(iSampleRateInHz, fMaxWidthInS, iNumChannels, fWidth, fModFreq);
-//    pcVibrato->setParam(CVibrato::kParamModWidth, fWidth);
-//    pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
+    pcVibrato->init(iSampleRateInHz, fMaxWidthInS, iNumChannels);
+    pcVibrato->setParam(CVibrato::kParamModWidth, fWidth);
+    pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
     //////////////////////////////////////////////////////////////////////////////
-    // allocate memory
+    // allocate memory for input and output data buffer
     ppfAudioData = new float*[stFileSpec.iNumChannels];
     ppfOutputData = new float*[stFileSpec.iNumChannels];
     for (int i = 0; i < stFileSpec.iNumChannels; i++) {
         ppfAudioData[i] = new float[kBlockSize];
         ppfOutputData[i] = new float[kBlockSize];
     }
-//    time = clock();
+
     //////////////////////////////////////////////////////////////////////////////
-    // get audio data and write it to the output file
+    // process file
     while (!phAudioFile->isEof())
     {
         long long iNumFrames = kBlockSize;
@@ -102,13 +102,11 @@ int main(int argc, char* argv[])
         phOutputFile->writeData(ppfOutputData, iNumFrames);
     }
 
-//    cout << "\nreading/writing done in: \t" << (clock() - time)*1.F / CLOCKS_PER_SEC << " seconds." << endl;
 
     //////////////////////////////////////////////////////////////////////////////
     // clean-up
     CAudioFileIf::destroy(phAudioFile);
     CAudioFileIf::destroy(phOutputFile);
-//    hOutputFile.close();
 
     for (int i = 0; i < stFileSpec.iNumChannels; i++)
         delete[] ppfAudioData[i];

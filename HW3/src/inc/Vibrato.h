@@ -34,7 +34,7 @@ private:
     float m_afParam[CVibrato::kNumFilterParams];
     int m_iNumChannels;
     float m_fSampleRate;
-    bool m_isInitialized;
+//    bool m_isInitialized;
     CVibrato();
     ~CVibrato();
 };
