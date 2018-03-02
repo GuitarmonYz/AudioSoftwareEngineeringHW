@@ -39,13 +39,13 @@ Error_t CVibrato::destroy(CVibrato *&cpCVibrato) {
     return kNoError;
 }
 
-Error_t CVibrato::init(float fSampleRateInHz, float fMaxWidthInS, int iNumChannels, float fModWidth, float fModFreq) {
-    m_fSampleRate = fSampleRateInHz;
+Error_t CVibrato::init(int iSampleRateInHz, float fMaxWidthInS, int iNumChannels, float fModWidth, float fModFreq) {
+    m_fSampleRate = iSampleRateInHz;
     m_iNumChannels = iNumChannels;
     m_afParam[VibratoParam_t::kParamModWidth] = fModWidth;
     m_afParam[VibratoParam_t::kParamModFreq] = fModFreq;
     m_pCLfo = new CLfo(fModFreq);
-    int iMaxWidthInSample = floor(fMaxWidthInS * fSampleRateInHz);
+    int iMaxWidthInSample = floor(fMaxWidthInS * iSampleRateInHz);
     m_ppCRingBuffer = new CRingBuffer<float> *[iNumChannels];
     for (int i = 0; i < iNumChannels; i++) {
         m_ppCRingBuffer[i] = new CRingBuffer<float>(iMaxWidthInSample*2 + 2);
@@ -76,6 +76,10 @@ Error_t CVibrato::setParam(CVibrato::VibratoParam_t eParam, float fParamValue) {
             break;
     }
     return kNoError;
+}
+
+float CVibrato::getParam(CVibrato::VibratoParam_t eParam) const {
+    return m_afParam[eParam];
 }
 
 Error_t CVibrato::reset() {
