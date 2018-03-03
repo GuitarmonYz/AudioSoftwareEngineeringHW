@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
     int                     iNumChannels = 0;
     int                     iSampleRateInHz = 44100;
     float                   fMaxWidthInS = 0.1f;
-    float                   fWidth = 0.0002f;
+    float                   fWidth = 0;
     float                   fModFreq = 5;
     
     sInputFilePath = "./piano.wav";
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
     // prepare the output wav file
     CAudioFileIf::create(phOutputFile);
     phOutputFile->openFile(sOutputFilePath, CAudioFileIf::kFileWrite, &stFileSpec);
-    ///////////////////
+    //////////////////////////////////////////////////////////////////////////////
     // viberato related initialization
     CVibrato::create(pcVibrato);
     pcVibrato->init(iSampleRateInHz, fMaxWidthInS, iNumChannels);
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
     // clean-up
     CAudioFileIf::destroy(phAudioFile);
     CAudioFileIf::destroy(phOutputFile);
-
+    CVibrato::destroy(pcVibrato);
     for (int i = 0; i < stFileSpec.iNumChannels; i++)
         delete[] ppfAudioData[i];
     delete[] ppfAudioData;

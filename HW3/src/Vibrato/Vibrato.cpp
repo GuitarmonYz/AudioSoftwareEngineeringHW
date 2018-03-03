@@ -15,7 +15,8 @@ CVibrato::CVibrato() :
 m_pCLfo(0),
 m_ppCRingBuffer(0),
 m_iNumChannels(0),
-m_fSampleRate(0)
+m_fSampleRate(0),
+m_isInitialized(false)
 {
     
 }
@@ -52,6 +53,7 @@ Error_t CVibrato::init(int iSampleRateInHz, float fMaxWidthInS, int iNumChannels
         m_ppCRingBuffer[i]->setReadIdx(0);
         m_ppCRingBuffer[i]->setWriteIdx(m_afParam[VibratoParam_t::kParamModWidth]*m_fSampleRate);
     }
+    m_isInitialized = true;
     return kNoError;
 }
 
@@ -64,8 +66,12 @@ Error_t CVibrato::setParam(CVibrato::VibratoParam_t eParam, float fParamValue) {
                     for (int j = 0; j < (fParamValue*m_fSampleRate - cur_write_idx); j++) {
                         m_ppCRingBuffer[i]->putPostInc(0);
                     }
+                } else if (fParamValue < m_afParam[eParam]) {
+                    float diff = m_afParam[eParam]*m_fSampleRate - fParamValue*m_fSampleRate;
+                    m_ppCRingBuffer[i]->setWriteIdx(cur_write_idx - diff);
                 }
             }
+            m_pCLfo->reset();
             m_afParam[eParam] = fParamValue;
             break;
         case VibratoParam_t::kParamModFreq :
@@ -86,10 +92,16 @@ Error_t CVibrato::reset() {
     for (int i = 0; i < m_iNumChannels; i++) {
         m_ppCRingBuffer[i]->reset();
     }
+    m_pCLfo->reset();
+    m_afParam[kParamModWidth] = 0.0025f;
+    m_afParam[kParamModFreq] = 5;
     return kNoError;
 }
 
 Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) {
+    if (!m_isInitialized) {
+        return kNotInitializedError;
+    }
     for (int i = 0; i < m_iNumChannels; i++) {
         for (int j = 0; j < iNumberOfFrames; j++) {
             m_ppCRingBuffer[i]->putPostInc(ppfInputBuffer[i][j]);
