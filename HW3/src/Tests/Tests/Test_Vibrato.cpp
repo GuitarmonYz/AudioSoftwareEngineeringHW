@@ -111,6 +111,56 @@ SUITE(Vibrato)
         std::cout << "DCInput Passed" << std::endl;
     }
     
+    TEST_FIXTURE(VibratoData, VaryingBlockSize) {
+        resetTempBuffer();
+        pcVibrato->reset();
+        for (int i = 0; i < iNumChannels; i++) {
+            CSynthesis::generateDc(ppfTestSig[i], iTestSigLength);
+        }
+        fWidth = 0.0005f;
+        fModFreq = 5;
+        pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidth, fWidth);
+        pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
+        float** inputBuffer = new float*[iNumChannels];
+        float** outputBuffer = new float*[iNumChannels];
+        float** totalOutputBuffer = new float*[iNumChannels];
+        iBlockLength = 1024;
+        for (int i = 0; i < iNumChannels; i++) {
+            inputBuffer[i] = new float[iBlockLength];
+            outputBuffer[i] = new float[iBlockLength];
+            totalOutputBuffer[i] = new float[iTestSigLength];
+        }
+        for (int i = 0; i < iNumChannels; i++) {
+            for (int j = 0; j < iTestSigLength; j+=iBlockLength) {
+                for (int k = j, t=0; t < iBlockLength; k++, t++) {
+                    inputBuffer[i][t] = ppfTestSig[i][k];
+                }
+                VibratoData::pcVibrato->process(inputBuffer, outputBuffer, iBlockLength);
+                for (int k = j, t=0; t < iBlockLength; k++, t++) {
+                    totalOutputBuffer[i][k] = outputBuffer[i][t];
+                    
+                }
+            }
+        }
+        pcVibrato->reset();
+        pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidth, fWidth);
+        pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
+        VibratoData::pcVibrato->process(ppfTestSig, ppfTemp, iTestSigLength);
+        for (int i = 0; i < iNumChannels; i++) {
+            for (int j = fWidth * iSampleRateInHz * 2; j < iTestSigLength; j++)
+                CHECK_CLOSE(totalOutputBuffer[i][j], ppfTemp[i][j], 1e-3);
+        }
+        std::cout << "varying block length test pass" << std::endl;
+        for (int i = 0; i < iNumChannels; i++) {
+            delete[] inputBuffer[i];
+            delete[] outputBuffer[i];
+            delete[] totalOutputBuffer[i];
+        }
+        delete[] inputBuffer;
+        delete [] outputBuffer;
+        delete [] totalOutputBuffer;
+    }
+    
     TEST_FIXTURE(VibratoData, ZeroInput) {
         resetTempBuffer();
         pcVibrato->reset();
@@ -130,24 +180,7 @@ SUITE(Vibrato)
         std::cout << "ZeroInput passed" << std::endl;
     }
     
-//    TEST_FIXTURE(VibratoData, VaryingBlockSize) {
-//        resetTempBuffer();
-//        pcVibrato->reset();
-//        float** inputBuffer = new float*[iNumChannels];
-//        float** outputBuffer = new float*[iNumChannels];
-//        iBlockLength = 1024;
-//        for (int i = 0; i < iNumChannels; i++) {
-//            inputBuffer[i] = new float[iBlockLength];
-//            outputBuffer[i] = new float[iBlockLength];
-//        }
-//        for (int i = 0; i < iNumChannels; i++) {
-//            for (int j = 0; j < iTestSigLength; j+=iBlockLength) {
-//                std::copy(ppfTestSig[i]+j, ppfTestSig[i]+j+iBlockLength-1, inputBuffer[i]);
-//                VibratoData::pcVibrato->process(inputBuffer, outputBuffer, iBlockLength);
-//                std::copy(outputBuffer, outputBuffer+iBlockLength-1, ppfTemp[i]+j);
-//            }
-//        }
-//    }
+    
     
     
     

@@ -33,10 +33,10 @@ int main(int argc, char* argv[])
     int                     iNumChannels = 0;
     int                     iSampleRateInHz = 44100;
     float                   fMaxWidthInS = 0.1f;
-    float                   fWidth = 0;
+    float                   fWidth = 0.0005f;
     float                   fModFreq = 5;
     
-    sInputFilePath = "./piano.wav";
+    sInputFilePath = "./sweep.wav";
     sOutputFilePath = "./output.wav";
     
     showClInfo();
