@@ -149,10 +149,11 @@ SUITE(Vibrato)
 //        }
 //    }
     
-	TEST_FIXTURE(VibratoData, vibratoParamModWidthUpdate) {
+	TEST_FIXTURE(VibratoData, vibratoParamUpdate) {
 		resetTempBuffer();
 		pcVibrato->reset();
 		fWidth = 0.05;
+		fModFreq = 10;
 		float fIncreaseWidth = 0.06;
 		float fDecreaseWidth = 0.04;
 		pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidth, fWidth);
@@ -161,12 +162,22 @@ SUITE(Vibrato)
 		CHECK_CLOSE(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModWidth), fIncreaseWidth, 1e-4);
 		pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidth, fDecreaseWidth);
 		CHECK_CLOSE(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModWidth), fDecreaseWidth, 1e-4);
-		std::cout << "Assigning modulation width test passed";
-		getchar();
+		pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
+		CHECK_EQUAL(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModFreq), fModFreq);
+		std::cout << "Setting modulation width and modulation frequency passed";
+		//getchar();
 	}
     
-	TEST_FIXTURE(VibratoData, vibratoParamModFreqUpdate) {
-
+	TEST_FIXTURE(VibratoData, vibratoResetTest ) {
+		resetTempBuffer();
+		pcVibrato->reset();
+		pcVibrato->init(iSampleRateInHz, fMaxWidthInS, iNumChannels, 0.05, 10);
+		CHECK_EQUAL(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModFreq), 10);
+		CHECK_CLOSE(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModWidth), 0.05, 1e-4);
+		pcVibrato->reset();
+		CHECK_EQUAL(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModFreq), 0);
+		std::cout << "Reset test passed";
+		getchar();
 	}
     
 }
