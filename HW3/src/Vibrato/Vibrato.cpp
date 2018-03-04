@@ -97,8 +97,8 @@ Error_t CVibrato::reset() {
         m_ppCRingBuffer[i]->reset();
     }
     m_pCLfo->reset();
-    m_afParam[kParamModWidth] = 0.0025f;
-    m_afParam[kParamModFreq] = 5;
+    m_afParam[kParamModWidth] = 0;
+    m_afParam[kParamModFreq] = 0;
     return kNoError;
 }
 
