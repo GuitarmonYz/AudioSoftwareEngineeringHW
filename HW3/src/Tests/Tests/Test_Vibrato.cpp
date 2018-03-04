@@ -137,6 +137,17 @@ SUITE(Vibrato)
         
     }
     
+	TEST_FIXTURE(VibratoData, vibratoParamUpdate) {
+		resetTempBuffer();
+		pcVibrato->reset();
+		fWidth = 0.05;
+		float fNewWidth = 0.06;
+		pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidth, fWidth);
+		CHECK_CLOSE(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModWidth), fWidth, 1e-4);
+		pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidth, fNewWidth);
+		std::cout << "Assigning modulation width test passed";
+		getchar();
+	}
     
     
 }
