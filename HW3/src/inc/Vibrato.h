@@ -91,6 +91,7 @@ private:
     float m_afParam[CVibrato::kNumFilterParams];
     int m_iNumChannels;
     float m_fSampleRate;
+    float m_fMaxWidthInS;
     bool m_isInitialized;
     CVibrato();
     ~CVibrato();

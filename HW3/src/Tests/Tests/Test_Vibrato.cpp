@@ -38,8 +38,6 @@ SUITE(Vibrato)
                 ppfTestSig[i] = new float[iTestSigLength];
             }
             pcVibrato->init(iSampleRateInHz, fMaxWidthInS, iNumChannels);
-//            pcVibrato->setParam(CVibrato::kParamModWidth, fWidth);
-//            pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
         }
 
         ~VibratoData()
@@ -54,8 +52,6 @@ SUITE(Vibrato)
             delete[] ppfTemp;
             delete[] ppfTestSig;
         }
-
-        // e.g., a reusable process() function
 
         // e.g., a member vibrato object to be reused in each test
         CVibrato* pcVibrato = 0;
@@ -134,7 +130,20 @@ SUITE(Vibrato)
     TEST_FIXTURE(VibratoData, VaryingBlockSize) {
         resetTempBuffer();
         pcVibrato->reset();
-        
+        float** inputBuffer = new float*[iNumChannels];
+        float** outputBuffer = new float*[iNumChannels];
+        iBlockLength = 1024;
+        for (int i = 0; i < iNumChannels; i++) {
+            inputBuffer[i] = new float[iBlockLength];
+            outputBuffer[i] = new float[iBlockLength];
+        }
+        for (int i = 0; i < iNumChannels; i++) {
+            for (int j = 0; j < iTestSigLength; j+=iBlockLength) {
+                std::copy(ppfTestSig[i]+j, ppfTestSig[i]+j+iBlockLength-1, inputBuffer[i]);
+                VibratoData::pcVibrato->process(inputBuffer, outputBuffer, iBlockLength);
+                std::copy(outputBuffer, outputBuffer+iBlockLength-1, ppfTemp[i]+j);
+            }
+        }
     }
     
     
