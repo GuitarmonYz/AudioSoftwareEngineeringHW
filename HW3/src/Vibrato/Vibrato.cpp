@@ -43,6 +43,7 @@ Error_t CVibrato::destroy(CVibrato *&cpCVibrato) {
 Error_t CVibrato::init(int iSampleRateInHz, float fMaxWidthInS, int iNumChannels, float fModWidth, float fModFreq) {
     m_fSampleRate = iSampleRateInHz;
     m_iNumChannels = iNumChannels;
+    m_fMaxWidthInS = fMaxWidthInS;
     m_afParam[VibratoParam_t::kParamModWidth] = fModWidth;
     m_afParam[VibratoParam_t::kParamModFreq] = fModFreq;
     m_pCLfo = new CLfo(fModFreq, m_fSampleRate);
@@ -60,6 +61,9 @@ Error_t CVibrato::init(int iSampleRateInHz, float fMaxWidthInS, int iNumChannels
 Error_t CVibrato::setParam(CVibrato::VibratoParam_t eParam, float fParamValue) {
     switch (eParam) {
         case VibratoParam_t::kParamModWidth :
+            if (fParamValue > m_fMaxWidthInS) {
+                return kFunctionInvalidArgsError;
+            }
             for (int i = 0; i < m_iNumChannels; i++) {
                 int cur_write_idx = m_ppCRingBuffer[i]->getWriteIdx();
                 if (fParamValue > m_afParam[eParam]) {
