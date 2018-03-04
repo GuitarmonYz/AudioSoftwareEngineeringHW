@@ -27,6 +27,10 @@ class CRingBuffer;
 *  initialization of vibrato class with given parameters, parameter
 *  get and update, and processing of the audio buffer with the given
 *  parameters.
+*
+* The design of the interface is in line with the that of the combfilter
+* class. It contains the initialization function, getter and setter functions,
+* and a process function returning the final results.
 */
 
 class CVibrato
