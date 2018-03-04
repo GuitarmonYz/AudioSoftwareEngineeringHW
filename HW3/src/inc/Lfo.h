@@ -18,8 +18,8 @@ public:
         m_iFixedBufferLength = m_fFixedSampleRateInHz / m_fFixedModFreq;
         m_fIncrement = m_iFixedBufferLength / (sampleRate / modFreq);
         m_pCRingBuffer = new CRingBuffer<float>(m_iFixedBufferLength);
-        float waveTableBuffer[m_iFixedBufferLength];
-//        float *waveTableBuffer = (float*)calloc(m_iFixedBufferLength, sizeof(float));
+ //       float waveTableBuffer[m_iFixedBufferLength];
+        float *waveTableBuffer = (float*)calloc(m_iFixedBufferLength, sizeof(float));
         CSynthesis::generateSine(waveTableBuffer, m_fFixedModFreq, m_fFixedSampleRateInHz, m_iFixedBufferLength);
         for (int i = 0; i < m_iFixedBufferLength; i++) {
             m_pCRingBuffer -> putPostInc(waveTableBuffer[i]);
