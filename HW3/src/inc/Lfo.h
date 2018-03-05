@@ -40,6 +40,10 @@ public:
         return kNoError;
     }
     
+    float getLfoRate() {
+        return m_fModFreq;
+    }
+    
     Error_t reset() {
         m_fCurPos = 0;
         return kNoError;
