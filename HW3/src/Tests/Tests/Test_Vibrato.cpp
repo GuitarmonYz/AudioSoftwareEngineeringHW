@@ -13,6 +13,7 @@
 #include "ErrorDef.h"
 
 #include "Vibrato.h"
+#include "Lfo.h"
 
 SUITE(Vibrato)
 {
@@ -55,6 +56,7 @@ SUITE(Vibrato)
 
         // e.g., a member vibrato object to be reused in each test
         CVibrato* pcVibrato = 0;
+
         int iSampleRateInHz;
         int iTestSigLength;
         int iNumChannels;
@@ -150,7 +152,7 @@ SUITE(Vibrato)
             for (int j = fWidth * iSampleRateInHz * 2; j < iTestSigLength; j++)
                 CHECK_CLOSE(totalOutputBuffer[i][j], ppfTemp[i][j], 1e-3);
         }
-        std::cout << "varying block length test pass" << std::endl;
+        std::cout << "varying block length test pass\n" << std::endl;
         for (int i = 0; i < iNumChannels; i++) {
             delete[] inputBuffer[i];
             delete[] outputBuffer[i];
@@ -177,7 +179,7 @@ SUITE(Vibrato)
         for (int i = 0; i < iNumChannels; i++) {
             CHECK_ARRAY_CLOSE(ppfTestSig[i], ppfTemp[i], iTestSigLength, 1e-3);
         }
-        std::cout << "ZeroInput passed" << std::endl;
+        std::cout << "ZeroInput passed\n" << std::endl;
     }
     
     
@@ -189,9 +191,9 @@ SUITE(Vibrato)
 		fModFreq = 10;
 		float fIncreaseWidth = 0.06;
 		float fDecreaseWidth = 0.04;
-		fWidth = 0.005;
-		float fIncreaseWidth = 0.006;
-		float fDecreaseWidth = 0.004;
+		//fWidth = 0.005;
+		//float fIncreaseWidth = 0.006;
+		//float fDecreaseWidth = 0.004;
 		pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidth, fWidth);
 		CHECK_CLOSE(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModWidth), fWidth, 1e-4);
 		pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidth, fIncreaseWidth);
@@ -200,7 +202,7 @@ SUITE(Vibrato)
 		CHECK_CLOSE(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModWidth), fDecreaseWidth, 1e-4);
 		pcVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreq, fModFreq);
 		CHECK_EQUAL(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModFreq), fModFreq);
-		std::cout << "Setting modulation width and modulation frequency passed";
+		std::cout << "Setting modulation width and modulation frequency passed\n";
 		//getchar();
 		
 
@@ -214,10 +216,56 @@ SUITE(Vibrato)
 		CHECK_CLOSE(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModWidth), 0.05, 1e-4);
 		pcVibrato->reset();
 		CHECK_EQUAL(pcVibrato->getParam(CVibrato::VibratoParam_t::kParamModFreq), 0);
-		std::cout << "Reset test passed";
-		getchar();
+		std::cout << "Reset test passed\n" ;
+		//getchar();
 	}
     
 }
+SUITE(Lfo) {
+	struct LfoData {
+		LfoData() {
+			modFreq = 10;
+			samplingRate = 44100;
+			cLfo = new CLfo(modFreq, samplingRate);
+		}
+		~LfoData() {
+			delete cLfo;
+		}
+		CLfo *cLfo = 0;
+		float modFreq;
+		float samplingRate;
+
+	};
+
+	TEST_FIXTURE(LfoData, testParameterUpdate) {
+		
+		int fixedSamplingRate = 44100;
+		float value = 0;
+		modFreq = 10;
+		CHECK_EQUAL(kNoError,cLfo->setLfoRate(10));
+		float *waveTableBuffer = (float*)calloc(fixedSamplingRate, sizeof(float));
+		CSynthesis::generateSine(waveTableBuffer, modFreq, fixedSamplingRate, fixedSamplingRate/modFreq);
+		
+		for (int i = 0; i < 5; i++) {
+			value = cLfo->getLFOVal();
+		}
+		CHECK_CLOSE(value,waveTableBuffer[4],1e-4);
+		value = 0;
+		cLfo->reset();
+		cLfo->setLfoRate(20);
+		for (int i = 0; i < 2; i++) {
+			
+			value = cLfo->getLFOVal();
+		}
+		CHECK_CLOSE(value, waveTableBuffer[2], 1e-4);
+		std::cout << "Lfo rate setting test passed\n";
+		//getchar();
+	}
+
+
+}
+
+
+
 
 #endif //WITH_TESTS

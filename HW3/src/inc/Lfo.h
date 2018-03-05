@@ -6,6 +6,7 @@
 
 #include "ErrorDef.h"
 #include "Synthesis.h"
+#include "RingBuffer.h"
 
 class CLfo
 {
