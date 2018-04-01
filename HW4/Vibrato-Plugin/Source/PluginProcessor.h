@@ -60,5 +60,6 @@ public:
 private:
     //==============================================================================
     const float m_maxDelayInS = 1;
+    float** m_inputBuffer = 0;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VibratopluginAudioProcessor)
 };

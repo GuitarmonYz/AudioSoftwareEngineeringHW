@@ -24,11 +24,16 @@ VibratopluginAudioProcessor::VibratopluginAudioProcessor()
                        )
 #endif
 {
+    m_inputBuffer = new float*[getTotalNumInputChannels()];
+    for (int i = 0; i < getTotalNumInputChannels(); i++) {
+        m_inputBuffer[i] = new float[getBlockSize()];
+    }
+    
 }
 
 VibratopluginAudioProcessor::~VibratopluginAudioProcessor()
 {
-    CVibrato::destroy(m_Vibrato);
+    CVibrato::destroyInstance(m_Vibrato);
 }
 
 //==============================================================================
@@ -98,8 +103,8 @@ void VibratopluginAudioProcessor::prepareToPlay (double sampleRate, int samplesP
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    CVibrato::create(m_Vibrato);
-    m_Vibrato->init(sampleRate, m_maxDelayInS, 2);
+    CVibrato::createInstance(m_Vibrato);
+    m_Vibrato->initInstance(m_maxDelayInS, sampleRate, 2);
 //    m_Vibrato->setParam(CVibrato::kParamModFreq, 5);
 //    m_Vibrato->setParam(CVibrato::kParamModWidth, 0.005f);
 }
@@ -155,15 +160,10 @@ void VibratopluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, Midi
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* inputData = buffer.getReadPointer(channel);
-        auto* outputData = buffer.getWritePointer (channel);
-//        m_Vibrato->process(, , , )
-        m_Vibrato->process(inputData, outputData, buffer.getNumSamples(), channel);
-        
-        // ..do something to the data...
-    }
+    auto** inputBuffer = buffer.getArrayOfReadPointers();
+    auto** outputBuffer = buffer.getArrayOfWritePointers();
+    memcpy(m_inputBuffer[0], inputBuffer[0], buffer.getNumSamples() * totalNumInputChannels * sizeof(float));
+    m_Vibrato->process(m_inputBuffer, outputBuffer, buffer.getNumSamples());
 }
 
 //==============================================================================

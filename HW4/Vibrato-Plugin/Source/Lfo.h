@@ -5,68 +5,100 @@
 #include <math.h>
 
 #include "ErrorDef.h"
-#include "Synthesis.h"
 #include "RingBuffer.h"
+#include "Synthesis.h"
 
 class CLfo
 {
 public:
-    CLfo (float modFreq, int sampleRate):
-    m_fModFreq(modFreq),
-    m_iSampleRateInHz(sampleRate),
-    m_fCurPos(0)
+    CLfo(float fSampleRate) :
+        m_fSampleRate(fSampleRate),
+        m_fReadIndex(0),
+        m_eType(kSine),
+        m_pCRingBuff(0)
     {
-        m_iFixedBufferLength = m_fFixedSampleRateInHz / m_fFixedModFreq;
-        m_fIncrement = m_iFixedBufferLength / (sampleRate / modFreq);
-        m_pCRingBuffer = new CRingBuffer<float>(m_iFixedBufferLength);
- //       float waveTableBuffer[m_iFixedBufferLength];
-        float *waveTableBuffer = (float*)calloc(m_iFixedBufferLength, sizeof(float));
-        CSynthesis::generateSine(waveTableBuffer, m_fFixedModFreq, m_fFixedSampleRateInHz, m_iFixedBufferLength);
-        for (int i = 0; i < m_iFixedBufferLength; i++) {
-            m_pCRingBuffer -> putPostInc(waveTableBuffer[i]);
-        }
-//        delete waveTableBuffer;
+        for (int i = 0; i < kNumLfoParams; i++)
+            m_afParam[i]    = 0;
+
+        m_pCRingBuff = new CRingBuffer<float>(m_kiBufferLength);
+
+        setLfoType(kSine);
     }
-    
-    ~CLfo () {
-        if (m_pCRingBuffer) {
-            delete m_pCRingBuffer;
-        }
+    virtual ~CLfo()
+    {
+        delete m_pCRingBuff;
     }
-    
-    Error_t setLfoRate(float modFreq) {
-        m_fModFreq = modFreq;
-        m_fIncrement = m_iFixedBufferLength / (m_iSampleRateInHz / modFreq);
+
+    enum LfoType_t
+    {
+        kSine,
+        kSaw,
+        kRect,
+
+        kNumLfoTypes
+    };
+    enum LfoParam_t
+    {
+        kLfoParamAmplitude,
+        kLfoParamFrequency,
+
+        kNumLfoParams
+    };
+    Error_t setLfoType (LfoType_t eType)
+    {
+        m_eType = eType;
+        computeWaveTable();
         return kNoError;
     }
-    
-    float getLfoRate() {
-        return m_fModFreq;
-    }
-    
-    Error_t reset() {
-        m_fCurPos = 0;
+    Error_t setParam(LfoParam_t eParam, float fValue)
+    {
+        m_afParam[eParam]   = fValue;
+
         return kNoError;
     }
-    
-    float getLFOVal() {
-        float res = m_pCRingBuffer->get(m_fCurPos);
-        m_fCurPos += m_fIncrement;
-        if (m_fCurPos >= m_iFixedBufferLength) {
-            m_fCurPos -= m_iFixedBufferLength;
-        }
-        return res;
+    float getParam (LfoParam_t eParam) const
+    {
+        return m_afParam[eParam];
+    }
+
+    float getNext()
+    {
+        float fValue = m_afParam[kLfoParamAmplitude] * m_pCRingBuff->get(m_fReadIndex);
+        m_fReadIndex = m_fReadIndex + m_afParam[kLfoParamFrequency]/m_fSampleRate * m_kiBufferLength;
+
+        if (m_fReadIndex >= m_kiBufferLength)
+            m_fReadIndex -= m_kiBufferLength;
+        return fValue;
     }
 private:
-    CRingBuffer<float>  *m_pCRingBuffer;
-    const float         m_fFixedModFreq = 10;
-    const float         m_fFixedSampleRateInHz = 44100;
-    int                 m_iFixedBufferLength;
-    float               m_fModFreq;
-    int                 m_iSampleRateInHz;
-    float               m_fIncrement;
-    float               m_fCurPos;
+    void computeWaveTable ()
+    {
+        float *pfBuff = new float [m_kiBufferLength];
+        switch (m_eType)
+        {
+        case kSine:
+            CSynthesis::generateSine (pfBuff, 1.F, 1.F*m_kiBufferLength, m_kiBufferLength);
+            break;
+        case kSaw:
+            CSynthesis::generateSaw (pfBuff, 1.F, 1.F*m_kiBufferLength, m_kiBufferLength);
+            break;
+        case kRect:
+            CSynthesis::generateRect (pfBuff, 1.F, 1.F*m_kiBufferLength, m_kiBufferLength);
+            break;
+        }
+
+        m_pCRingBuff->put(pfBuff, m_kiBufferLength);
+
+        delete [] pfBuff;
+    }
+    static const int m_kiBufferLength = 4096;
+
+    float m_fSampleRate;
+    float m_fReadIndex;
+    float m_afParam[kNumLfoParams];
+
+    LfoType_t m_eType;
+
+    CRingBuffer<float> *m_pCRingBuff;
 };
-
 #endif // __Lfo_hdr__
-

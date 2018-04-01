@@ -21,7 +21,7 @@ VibratopluginAudioProcessorEditor::VibratopluginAudioProcessorEditor (Vibratoplu
     sliderWidth->setRange(0.0f, 1000.0f, 0.1f);
     sliderWidth->setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
     sliderWidth->onValueChange = [this] {
-       processor.m_Vibrato->setParam(CVibrato::kParamModWidth, sliderWidth->getValue());
+       processor.m_Vibrato->setParam(CVibrato::kParamModWidthInS, sliderWidth->getValue());
     };
 //    sliderWidth->addListener(this);
     
@@ -29,12 +29,12 @@ VibratopluginAudioProcessorEditor::VibratopluginAudioProcessorEditor (Vibratoplu
     sliderFreq->setRange(0.0f, 20.0f, 0.1);
     sliderFreq->setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
     sliderFreq->onValueChange = [this] {
-        processor.m_Vibrato->setParam(CVibrato::kParamModFreq, sliderFreq->getValue());
+        processor.m_Vibrato->setParam(CVibrato::kParamModFreqInHz, sliderFreq->getValue());
     };
 //    sliderFreq->addListener(this);
     
-    sliderWidth->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModWidth)*1000);
-    sliderFreq->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModFreq));
+    sliderWidth->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModWidthInS)*1000);
+    sliderFreq->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModFreqInHz));
     
     setSize (400, 300);
     
