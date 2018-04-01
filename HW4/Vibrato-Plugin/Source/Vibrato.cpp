@@ -1,4 +1,3 @@
-#pragma once
 #include "ErrorDef.h"
 #include "RingBuffer.h"
 

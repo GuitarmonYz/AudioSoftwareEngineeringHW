@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT name="Vibrato-Plugin" projectType="audioplug" buildStandalone="1"
+              jucerVersion="5.3.0">
+  <MAINGROUP id="KJN6P9" name="Vibrato-Plugin">
+    <GROUP id="{287974FF-FFCF-5946-0D48-05F3D10A9ABD}" name="VibratoAPI">
+      <FILE id="XO7QXJ" name="ErrorDef.h" compile="0" resource="0" file="/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/HW4/Vibrato-Plugin/Source/ErrorDef.h"/>
+      <FILE id="WpLDmo" name="Util.h" compile="0" resource="0" file="/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/HW4/Vibrato-Plugin/Source/Util.h"/>
+      <FILE id="jksXSf" name="Lfo.h" compile="0" resource="0" file="/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/HW4/Vibrato-Plugin/Source/Lfo.h"/>
+      <FILE id="zMuT6W" name="Synthesis.h" compile="0" resource="0" file="/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/HW4/Vibrato-Plugin/Source/Synthesis.h"/>
+      <FILE id="hBqqgw" name="RingBuffer.h" compile="0" resource="0" file="/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/HW4/Vibrato-Plugin/Source/RingBuffer.h"/>
+      <FILE id="s57T6U" name="Vibrato.h" compile="0" resource="0" file="/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/HW4/Vibrato-Plugin/Source/Vibrato.h"/>
+      <FILE id="JoZ29A" name="Vibrato.cpp" compile="1" resource="0" file="/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/HW4/Vibrato-Plugin/Source/Vibrato.cpp"/>
+    </GROUP>
+    <GROUP id="{C0A15F67-9895-38C8-BA6D-CC988434B3B7}" name="Source">
+      <FILE id="kNmnEd" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="CtUXe1" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="inF5OT" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="AwzoiP" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../../../../../../../Applications/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath=":"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath=":"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
