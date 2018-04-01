@@ -55,11 +55,12 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-
+    void toggleBypass ();
     CVibrato* m_Vibrato = 0;
 private:
     //==============================================================================
     const float m_maxDelayInS = 1;
     float** m_inputBuffer = 0;
+    bool bypass = false;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VibratopluginAudioProcessor)
 };

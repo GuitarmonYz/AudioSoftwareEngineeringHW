@@ -30,7 +30,7 @@ private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     VibratopluginAudioProcessor& processor;
-    
+    ScopedPointer<Button> bypassButton;
     ScopedPointer<Slider> sliderWidth, sliderFreq;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VibratopluginAudioProcessorEditor)
 };
