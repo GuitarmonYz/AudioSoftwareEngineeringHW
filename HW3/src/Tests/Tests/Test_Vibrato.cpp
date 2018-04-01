@@ -242,19 +242,23 @@ SUITE(Lfo) {
 		float *waveTableBuffer = (float*)calloc(fixedSamplingRate, sizeof(float));
 		CSynthesis::generateSine(waveTableBuffer, modFreq, fixedSamplingRate, fixedSamplingRate/modFreq);
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < (fixedSamplingRate/modFreq); i++) {
 			value = cLfo->getLFOVal();
+			CHECK_CLOSE(value, waveTableBuffer[i], 1e-4);
 		}
-		CHECK_CLOSE(value,waveTableBuffer[4],1e-4);
+		
 		value = 0;
 		cLfo->reset();
 		cLfo->setLfoRate(20);
-		for (int i = 0; i < 2; i++) {
+
+		for (int i = 0; i < (fixedSamplingRate / modFreq); i+=2) {		
 			value = cLfo->getLFOVal();
+			CHECK_CLOSE(value, waveTableBuffer[i], 1e-4);
 		}
-		CHECK_CLOSE(value, waveTableBuffer[2], 1e-4);
         std::cout << "Lfo rate setting test passed"<< std::endl;
         free(waveTableBuffer);
+		//getchar();
+
 	}
 }
 
