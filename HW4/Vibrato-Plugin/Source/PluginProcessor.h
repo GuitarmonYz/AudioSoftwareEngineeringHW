@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Vibrato.h"
 
 //==============================================================================
 /**
@@ -55,7 +56,9 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    CVibrato* m_Vibrato = 0;
 private:
     //==============================================================================
+    const float m_maxDelayInS = 1;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VibratopluginAudioProcessor)
 };

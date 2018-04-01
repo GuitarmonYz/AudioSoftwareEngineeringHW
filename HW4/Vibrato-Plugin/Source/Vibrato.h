@@ -84,6 +84,7 @@ public:
 	* @param iNumberOfFrames frames/samples  in the input buffer 
 	*/
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
+    Error_t process (const float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames, int channelNum);
 
 private:
     CLfo                *m_pCLfo;

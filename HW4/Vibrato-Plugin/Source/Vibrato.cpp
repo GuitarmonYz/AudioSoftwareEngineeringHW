@@ -95,6 +95,18 @@ Error_t CVibrato::reset() {
     return kNoError;
 }
 
+Error_t CVibrato::process(const float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames, int channelNum) {
+    if (!m_isInitialized) {
+        return kNotInitializedError;
+    }
+    for (int i = 0; i < iNumberOfFrames; i++) {
+        m_ppCRingBuffer[channelNum]->putPostInc(pfInputBuffer[i]);
+        pfOutputBuffer[i] = m_ppCRingBuffer[channelNum]->get(m_afParam[VibratoParam_t::kParamModWidth] * m_fSampleRate * m_pCLfo->getLFOVal());
+        m_ppCRingBuffer[channelNum]->getPostInc();
+    }
+    return kNoError;
+}
+
 Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) {
     if (!m_isInitialized) {
         return kNotInitializedError;

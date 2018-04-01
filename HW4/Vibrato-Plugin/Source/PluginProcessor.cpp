@@ -28,6 +28,7 @@ VibratopluginAudioProcessor::VibratopluginAudioProcessor()
 
 VibratopluginAudioProcessor::~VibratopluginAudioProcessor()
 {
+    CVibrato::destroy(m_Vibrato);
 }
 
 //==============================================================================
@@ -97,6 +98,10 @@ void VibratopluginAudioProcessor::prepareToPlay (double sampleRate, int samplesP
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    CVibrato::create(m_Vibrato);
+    m_Vibrato->init(sampleRate, m_maxDelayInS, 2);
+//    m_Vibrato->setParam(CVibrato::kParamModFreq, 5);
+//    m_Vibrato->setParam(CVibrato::kParamModWidth, 0.005f);
 }
 
 void VibratopluginAudioProcessor::releaseResources()
@@ -152,8 +157,11 @@ void VibratopluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, Midi
     // interleaved by keeping the same state.
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
-        auto* channelData = buffer.getWritePointer (channel);
-
+        auto* inputData = buffer.getReadPointer(channel);
+        auto* outputData = buffer.getWritePointer (channel);
+//        m_Vibrato->process(, , , )
+        m_Vibrato->process(inputData, outputData, buffer.getNumSamples(), channel);
+        
         // ..do something to the data...
     }
 }

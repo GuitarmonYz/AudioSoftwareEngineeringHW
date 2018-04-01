@@ -25,11 +25,12 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
-
+//    void sliderValueChanged (Slider* sliderThatWasMoved) override;
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     VibratopluginAudioProcessor& processor;
-
+    
+    ScopedPointer<Slider> sliderWidth, sliderFreq;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VibratopluginAudioProcessorEditor)
 };
