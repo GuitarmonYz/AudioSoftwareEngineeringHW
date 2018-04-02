@@ -55,7 +55,7 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-    void toggleBypass ();
+    void toggleBypass (float uiWidthVal);
     CVibrato* m_Vibrato = 0;
 private:
     //==============================================================================

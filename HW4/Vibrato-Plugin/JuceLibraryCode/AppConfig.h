@@ -320,7 +320,7 @@
  #define JucePlugin_ManufacturerCode       0x4d616e75 // 'Manu'
 #endif
 #ifndef  JucePlugin_PluginCode
- #define JucePlugin_PluginCode             0x436e6c35 // 'Cnl5'
+ #define JucePlugin_PluginCode             0x49666475 // 'Ifdu'
 #endif
 #ifndef  JucePlugin_IsSynth
  #define JucePlugin_IsSynth                0

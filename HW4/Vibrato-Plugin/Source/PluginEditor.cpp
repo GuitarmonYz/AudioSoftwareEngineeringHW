@@ -17,43 +17,50 @@ VibratopluginAudioProcessorEditor::VibratopluginAudioProcessorEditor (Vibratoplu
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    addAndMakeVisible(sliderWidth = new Slider("Width"));
-    sliderWidth->setRange(0, 1000, 1);
-    sliderWidth->setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
-    sliderWidth->setTextBoxStyle(Slider::TextBoxBelow, true, 80, 20);
-    sliderWidth->setTextValueSuffix("ms");
-    sliderWidth->onValueChange = [this] {
-       processor.m_Vibrato->setParam(CVibrato::kParamModWidthInS, sliderWidth->getValue()/1000);
+    addAndMakeVisible(widthSlider = new Slider("Width"));
+    widthSlider->setRange(0, 1000, 1);
+    widthSlider->setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+    widthSlider->setTextBoxStyle(Slider::TextBoxBelow, true, 80, 20);
+    widthSlider->setTextValueSuffix("ms");
+    widthSlider->onValueChange = [this] {
+       processor.m_Vibrato->setParam(CVibrato::kParamModWidthInS, widthSlider->getValue()/1000);
     };
+    
+    addAndMakeVisible(widthLabel = new Label("Width"));
+    widthLabel->setText("Width", dontSendNotification);
+    widthLabel->attachToComponent(widthSlider, false);
 //    sliderWidth->addListener(this);
     
-    addAndMakeVisible(sliderFreq = new Slider("Freq"));
-    sliderFreq->setRange(0.0f, 20.0f, 0.1);
-    sliderFreq->setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
-    sliderFreq->setTextBoxStyle(Slider::TextBoxBelow, true, 80, 20);
-    sliderFreq->setTextValueSuffix("Hz");
-    sliderFreq->onValueChange = [this] {
-        processor.m_Vibrato->setParam(CVibrato::kParamModFreqInHz, sliderFreq->getValue());
+    addAndMakeVisible(freqSlider = new Slider("Freq"));
+    freqSlider->setRange(0.0f, 20.0f, 0.1);
+    freqSlider->setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+    freqSlider->setTextBoxStyle(Slider::TextBoxBelow, true, 80, 20);
+    freqSlider->setTextValueSuffix("Hz");
+    freqSlider->onValueChange = [this] {
+        processor.m_Vibrato->setParam(CVibrato::kParamModFreqInHz, freqSlider->getValue());
     };
 //    sliderFreq->addListener(this);
     
+    addAndMakeVisible(freqLabel = new Label("Freq"));
+    freqLabel->setText("Freq", dontSendNotification);
+    freqLabel->attachToComponent(freqSlider, false);
+    
     addAndMakeVisible(bypassButton = new ToggleButton("Bypass"));
-    bypassButton->onStateChange = [this] {
-        processor.toggleBypass();
+    bypassButton->onClick = [this] {
+        processor.toggleBypass(widthSlider->getValue() / 1000);
     };
     
+    widthSlider->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModWidthInS)*1000);
+    freqSlider->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModFreqInHz));
     
-    sliderWidth->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModWidthInS)*1000);
-    sliderFreq->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModFreqInHz));
-    
-    setSize (400, 300);
+    setSize (400, 247.2);
     
 }
 
 VibratopluginAudioProcessorEditor::~VibratopluginAudioProcessorEditor()
 {
-    sliderWidth = nullptr;
-    sliderFreq = nullptr;
+    widthSlider = nullptr;
+    freqSlider = nullptr;
 }
 
 //==============================================================================
@@ -70,7 +77,7 @@ void VibratopluginAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
-    sliderFreq->setBounds (proportionOfWidth (0.1f), proportionOfHeight (0), proportionOfWidth (0.4f), proportionOfHeight (0.4f));
-    sliderWidth->setBounds (proportionOfWidth (0.1f), proportionOfHeight (0.6f), proportionOfWidth (0.4f), proportionOfHeight (0.4f));
-    bypassButton->setBoundsRelative(0.1f, 0.8f, 0.2f, 0.2f);
+    freqSlider->setBounds (proportionOfWidth (0), proportionOfHeight (0.3f), proportionOfWidth (0.4f), proportionOfHeight (0.4f));
+    widthSlider->setBounds (proportionOfWidth (0.5f), proportionOfHeight (0.3f), proportionOfWidth (0.4f), proportionOfHeight (0.4f));
+    bypassButton->setBoundsRelative(0.8f, 0, 0.2f, 0.2f);
 }

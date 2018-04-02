@@ -28,7 +28,7 @@ VibratopluginAudioProcessor::VibratopluginAudioProcessor()
     for (int i = 0; i < getTotalNumInputChannels(); i++) {
         m_inputBuffer[i] = new float[getBlockSize()];
     }
-    
+    getSampleRate();
 }
 
 VibratopluginAudioProcessor::~VibratopluginAudioProcessor()
@@ -105,10 +105,8 @@ void VibratopluginAudioProcessor::prepareToPlay (double sampleRate, int samplesP
     // initialisation that you need..
     CVibrato::createInstance(m_Vibrato);
     m_Vibrato->initInstance(m_maxDelayInS, sampleRate, 2);
-    m_Vibrato->setParam(CVibrato::kParamModWidthInS, 0.1f);
+    m_Vibrato->setParam(CVibrato::kParamModWidthInS, 0.01f);
     m_Vibrato->setParam(CVibrato::kParamModFreqInHz, 5);
-//    m_Vibrato->setParam(CVibrato::kParamModFreq, 5);
-//    m_Vibrato->setParam(CVibrato::kParamModWidth, 0.005f);
 }
 
 void VibratopluginAudioProcessor::releaseResources()
@@ -116,8 +114,13 @@ void VibratopluginAudioProcessor::releaseResources()
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
-void VibratopluginAudioProcessor::toggleBypass() {
+void VibratopluginAudioProcessor::toggleBypass(float uiWidthVal) {
     this->bypass = !this->bypass;
+    if (bypass) {
+        m_Vibrato->setParam(CVibrato::kParamModWidthInS, 0);
+    } else {
+        m_Vibrato->setParam(CVibrato::kParamModWidthInS, uiWidthVal);
+    }
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -167,7 +170,6 @@ void VibratopluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, Midi
     // interleaved by keeping the same state.
     auto** inputBuffer = buffer.getArrayOfReadPointers();
     auto** outputBuffer = buffer.getArrayOfWritePointers();
-//    memcpy(m_inputBuffer[0], inputBuffer[0], buffer.getNumSamples() * totalNumInputChannels * sizeof(float));
     m_Vibrato->process(inputBuffer, outputBuffer, buffer.getNumSamples());
 }
 
