@@ -114,12 +114,12 @@ void VibratopluginAudioProcessor::releaseResources()
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
-void VibratopluginAudioProcessor::toggleBypass(float uiWidthVal) {
+void VibratopluginAudioProcessor::toggleBypass(float uiFreqVal) {
     this->bypass = !this->bypass;
     if (bypass) {
-        m_Vibrato->setParam(CVibrato::kParamModWidthInS, 0);
+        m_Vibrato->setParam(CVibrato::kParamModFreqInHz, 0);
     } else {
-        m_Vibrato->setParam(CVibrato::kParamModWidthInS, uiWidthVal);
+        m_Vibrato->setParam(CVibrato::kParamModFreqInHz, uiFreqVal);
     }
 }
 

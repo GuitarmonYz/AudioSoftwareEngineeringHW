@@ -29,7 +29,6 @@ VibratopluginAudioProcessorEditor::VibratopluginAudioProcessorEditor (Vibratoplu
     addAndMakeVisible(widthLabel = new Label("Width"));
     widthLabel->setText("Width", dontSendNotification);
     widthLabel->attachToComponent(widthSlider, false);
-//    sliderWidth->addListener(this);
     
     addAndMakeVisible(freqSlider = new Slider("Freq"));
     freqSlider->setRange(0.0f, 20.0f, 0.1);
@@ -39,7 +38,6 @@ VibratopluginAudioProcessorEditor::VibratopluginAudioProcessorEditor (Vibratoplu
     freqSlider->onValueChange = [this] {
         processor.m_Vibrato->setParam(CVibrato::kParamModFreqInHz, freqSlider->getValue());
     };
-//    sliderFreq->addListener(this);
     
     addAndMakeVisible(freqLabel = new Label("Freq"));
     freqLabel->setText("Freq", dontSendNotification);
@@ -47,7 +45,7 @@ VibratopluginAudioProcessorEditor::VibratopluginAudioProcessorEditor (Vibratoplu
     
     addAndMakeVisible(bypassButton = new ToggleButton("Bypass"));
     bypassButton->onClick = [this] {
-        processor.toggleBypass(widthSlider->getValue() / 1000);
+        processor.toggleBypass(freqSlider->getValue());
     };
     
     widthSlider->setValue(processor.m_Vibrato->getParam(CVibrato::kParamModWidthInS)*1000);
@@ -60,7 +58,10 @@ VibratopluginAudioProcessorEditor::VibratopluginAudioProcessorEditor (Vibratoplu
 VibratopluginAudioProcessorEditor::~VibratopluginAudioProcessorEditor()
 {
     widthSlider = nullptr;
+    widthLabel = nullptr;
     freqSlider = nullptr;
+    freqLabel = nullptr;
+    
 }
 
 //==============================================================================
