@@ -170,7 +170,7 @@ bool CVibrato::isInParamRange( VibratoParam_t eParam, float fValue )
     }
 }
 
-Error_t CVibrato::process(const float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
+Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
 {
     if (!ppfInputBuffer || !ppfOutputBuffer || iNumberOfFrames < 0)
         return kFunctionInvalidArgsError;

@@ -41,7 +41,7 @@ public:
     Error_t setParam (VibratoParam_t eParam, float fParamValue);
     float getParam (VibratoParam_t eParam) const;
 
-    Error_t process (const float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
+    Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
 
 protected:
     CVibrato ();

@@ -171,8 +171,9 @@ void VibratopluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, Midi
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    auto** inputBuffer = buffer.getArrayOfReadPointers();
+    auto** inputBuffer = (float**)buffer.getArrayOfReadPointers();
     auto** outputBuffer = buffer.getArrayOfWritePointers();
+    
     m_Vibrato->process(inputBuffer, outputBuffer, buffer.getNumSamples());
 }
 
