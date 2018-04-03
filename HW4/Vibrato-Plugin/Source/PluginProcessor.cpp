@@ -115,12 +115,15 @@ void VibratopluginAudioProcessor::releaseResources()
     // spare memory, etc.
 }
 void VibratopluginAudioProcessor::toggleBypass(float uiFreqVal) {
-    this->bypass = !this->bypass;
-    if (bypass) {
+    this->m_bypass = !this->m_bypass;
+    if (m_bypass) {
         m_Vibrato->setParam(CVibrato::kParamModFreqInHz, 0);
     } else {
         m_Vibrato->setParam(CVibrato::kParamModFreqInHz, uiFreqVal);
     }
+}
+bool VibratopluginAudioProcessor::getBypass() {
+    return m_bypass;
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations

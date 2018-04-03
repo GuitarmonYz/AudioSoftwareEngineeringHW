@@ -36,7 +36,8 @@ VibratopluginAudioProcessorEditor::VibratopluginAudioProcessorEditor (Vibratoplu
     freqSlider->setTextBoxStyle(Slider::TextBoxBelow, true, 80, 20);
     freqSlider->setTextValueSuffix("Hz");
     freqSlider->onValueChange = [this] {
-        processor.m_Vibrato->setParam(CVibrato::kParamModFreqInHz, freqSlider->getValue());
+        if (!processor.getBypass())
+            processor.m_Vibrato->setParam(CVibrato::kParamModFreqInHz, freqSlider->getValue());
     };
     
     addAndMakeVisible(freqLabel = new Label("Freq"));
