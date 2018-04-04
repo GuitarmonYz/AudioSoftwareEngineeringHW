@@ -114,13 +114,17 @@ Error_t CDtw::process(float **ppfDistanceMatrix)
         resMatrix[i][0] = curRow;
         resMatrix[i][1] = curCol;
         int direct = directMatrix[curRow][curCol];
-        if (direct == kHoriz) {
-            curCol--;
-        } else if (direct == kVert) {
-            curRow--;
-        } else {
-            curCol--;
-            curRow--;
+        switch (direct) {
+            case kHoriz:
+                curCol--;
+                break;
+            case kVert:
+                curRow--;
+                break;
+            default:
+                curCol--;
+                curRow--;
+                break;
         }
         pathStartIdx++;
     }
