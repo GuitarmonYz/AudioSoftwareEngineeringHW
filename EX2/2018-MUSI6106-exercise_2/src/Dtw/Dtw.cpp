@@ -87,16 +87,26 @@ Error_t CDtw::process(float **ppfDistanceMatrix)
     for (int i = 1; i < m_numRows; i++) {
         for (int j = 1; j < m_numCols; j++) {
             distanceMatrix[i][j] = ppfDistanceMatrix[i][j];
-            float minVal = std::min(costMatrix[i-1][j], std::min(costMatrix[i][j-1], costMatrix[i-1][j-1]));
+//            float minVal = std::min(costMatrix[i-1][j], std::min(costMatrix[i][j-1], costMatrix[i-1][j-1]));
             
-            costMatrix[i][j] = minVal + ppfDistanceMatrix[i][j];
+//            costMatrix[i][j] = minVal + ppfDistanceMatrix[i][j];
             
-            if (minVal == costMatrix[i-1][j]) {
+//            if (minVal == costMatrix[i-1][j]) {
+//                directMatrix[i][j] = kVert;
+//            } else if (minVal == costMatrix[i][j-1]) {
+//                directMatrix[i][j] = kHoriz;
+//            } else {
+//                directMatrix[i][j] = kDiag;
+//            }
+            if (costMatrix[i-1][j] < costMatrix[i][j-1] && costMatrix[i-1][j] < costMatrix[i-1][j-1]){
                 directMatrix[i][j] = kVert;
-            } else if (minVal == costMatrix[i][j-1]) {
+                costMatrix[i][j] = costMatrix[i-1][j] + ppfDistanceMatrix[i][j];
+            } else if (costMatrix[i][j-1] < costMatrix[i-1][j] && costMatrix[i][j-1] < costMatrix[i-1][j-1]) {
                 directMatrix[i][j] = kHoriz;
+                costMatrix[i][j] = costMatrix[i][j-1] + ppfDistanceMatrix[i][j];
             } else {
                 directMatrix[i][j] = kDiag;
+                costMatrix[i][j] = costMatrix[i-1][j-1] + ppfDistanceMatrix[i][j];
             }
         }
     }
@@ -112,10 +122,9 @@ Error_t CDtw::process(float **ppfDistanceMatrix)
             curCol--;
             curRow--;
         }
-        if (curRow==0 && curCol==0) {
-            pathStartIdx = i - 1;
-        }
+        pathStartIdx++;
     }
+    pathStartIdx = m_numRows + m_numCols - 1 - pathStartIdx;
     m_processed = true;
     return kNoError;
 }
