@@ -11,13 +11,33 @@ CDtw::CDtw( void )
 
 CDtw::~CDtw( void )
 {
-
+    for (int i = 0; i < m_numRows; i++) {
+        delete [] distanceMatrix[i];
+        delete [] costMatrix[i];
+        delete [] directMatrix[i];
+    }
+    delete [] distanceMatrix;
+    delete [] costMatrix;
+    delete [] directMatrix;
+    for (int i = 0; i < m_numCols + m_numRows; i++) {
+        delete [] resMatrix[i];
+    }
+    delete [] resMatrix;
 }
 
 Error_t CDtw::init( int iNumRows, int iNumCols )
 {
+    if (iNumRows <= 0 || iNumCols <= 0) return kFunctionInvalidArgsError;
+    
     m_numCols = iNumCols;
     m_numRows = iNumRows;
+    distanceMatrix = new float*[iNumRows];
+    for (int i = 0; i < iNumRows; i++) {
+        distanceMatrix[i] = new float[iNumCols];
+        for (int j = 0; j < iNumCols; j++) {
+            distanceMatrix[i][j] = 0;
+        }
+    }
     costMatrix = new float*[iNumRows];
     for (int i = 0; i < iNumRows; i++) {
         costMatrix[i] = new float[iNumCols];
@@ -32,14 +52,14 @@ Error_t CDtw::init( int iNumRows, int iNumCols )
             directMatrix[i][j] = 0;
         }
     }
-    resMatrix = new int*[iNumRows + iNumCols - 2];
-    for (int i = 0; i < iNumRows; i++) {
+    resMatrix = new int*[iNumRows + iNumCols];
+    for (int i = 0; i < iNumRows + iNumCols; i++) {
         resMatrix[i] = new int[2];
         for (int j = 0; j < 2; j++) {
             resMatrix[i][j] = 0;
         }
     }
-    
+    m_initialized = true;
     return kNoError;
 }
 
@@ -50,15 +70,23 @@ Error_t CDtw::reset()
 
 Error_t CDtw::process(float **ppfDistanceMatrix)
 {
+    if (!m_initialized) return kNotInitializedError;
+    if (ppfDistanceMatrix == NULL) return kFunctionInvalidArgsError;
     costMatrix[0][0] = ppfDistanceMatrix[0][0];
+    distanceMatrix[0][0] = ppfDistanceMatrix[0][0];
     for (int i = 1; i < m_numCols; i++) {
+        distanceMatrix[0][i] = ppfDistanceMatrix[0][i];
         costMatrix[0][i] = costMatrix[0][i-1] + ppfDistanceMatrix[0][i];
+        directMatrix[0][i] = kHoriz;
     }
     for (int i = 1; i < m_numRows; i++) {
+        distanceMatrix[i][0] = ppfDistanceMatrix[i][0];
         costMatrix[i][0] = costMatrix[i-1][0] + ppfDistanceMatrix[i][0];
+        directMatrix[i][0] = kVert;
     }
     for (int i = 1; i < m_numRows; i++) {
         for (int j = 1; j < m_numCols; j++) {
+            distanceMatrix[i][j] = ppfDistanceMatrix[i][j];
             float minVal = std::min(costMatrix[i-1][j], std::min(costMatrix[i][j-1], costMatrix[i-1][j-1]));
             
             costMatrix[i][j] = minVal + ppfDistanceMatrix[i][j];
@@ -72,8 +100,7 @@ Error_t CDtw::process(float **ppfDistanceMatrix)
             }
         }
     }
-    
-    for (int i = m_numRows + m_numCols - 2, curRow=m_numRows, curCol=m_numCols; i >= 0; i--) {
+    for (int i = m_numRows + m_numCols - 1, curRow=m_numRows-1, curCol=m_numCols-1; !(curRow == 0 && curCol == 0); i--) {
         resMatrix[i][0] = curRow;
         resMatrix[i][1] = curCol;
         int direct = directMatrix[curRow][curCol];
@@ -86,31 +113,40 @@ Error_t CDtw::process(float **ppfDistanceMatrix)
             curRow--;
         }
         if (curRow==0 && curCol==0) {
-            pathStartIdx = i;
+            pathStartIdx = i - 1;
         }
     }
+    m_processed = true;
     return kNoError;
 }
 
 int CDtw::getPathLength()
-{    
-    return m_numRows + m_numCols - 2 - pathStartIdx;
+{
+    if (m_processed) return m_numRows + m_numCols - pathStartIdx;
+    else return 0;
 }
 
 float CDtw::getPathCost() const
 {
     float totalCost = 0;
-    for (int i = pathStartIdx; i < m_numRows + m_numCols - 2; i++) {
-        totalCost += costMatrix[resMatrix[i][0]][resMatrix[i][1]];
+    for (int i = pathStartIdx; i < m_numRows + m_numCols; i++) {
+        if (m_numRows != 1 && m_numCols != 1) {
+            totalCost += distanceMatrix[resMatrix[i][0]][resMatrix[i][1]];
+        } else if (m_numRows == 1) {
+            totalCost += distanceMatrix[0][resMatrix[i][1]];
+        } else if (m_numCols == 1) {
+            totalCost += distanceMatrix[resMatrix[i][0]][0];
+        }
+        
     }
     return totalCost;
 }
 
 Error_t CDtw::getPath( int **ppiPathResult ) const
 {
-    for (int i = 0; i < m_numRows + m_numCols - 2 - pathStartIdx; i++) {
-        ppiPathResult[i][0] = resMatrix[pathStartIdx+i][0];
-        ppiPathResult[i][1] = resMatrix[pathStartIdx+i][1];
+    for (int i = 0; i < m_numRows + m_numCols - pathStartIdx; i++) {
+        ppiPathResult[0][i] = resMatrix[pathStartIdx+i][0];
+        ppiPathResult[1][i] = resMatrix[pathStartIdx+i][1];
     }
     return kNoError;
 }

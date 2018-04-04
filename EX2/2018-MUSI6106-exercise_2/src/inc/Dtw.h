@@ -66,12 +66,15 @@ private:
 
         kNumDirections
     };
+    float** distanceMatrix = 0;
     float** costMatrix = 0;
     int** directMatrix = 0;
     int** resMatrix = 0;
     int pathStartIdx = 0;
     int m_numRows;
     int m_numCols;
+    bool m_initialized = false;
+    bool m_processed = false;
 };
 
 
