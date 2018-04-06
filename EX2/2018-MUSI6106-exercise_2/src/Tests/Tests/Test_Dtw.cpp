@@ -1,6 +1,5 @@
 #include "MUSI6106Config.h"
 
-
 #ifdef WITH_TESTS
 #include <cassert>
 #include <cstdio>

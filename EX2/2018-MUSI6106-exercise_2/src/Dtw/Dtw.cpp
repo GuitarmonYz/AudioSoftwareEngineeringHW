@@ -72,6 +72,7 @@ Error_t CDtw::process(float **ppfDistanceMatrix)
 {
     if (!m_initialized) return kNotInitializedError;
     if (ppfDistanceMatrix == NULL) return kFunctionInvalidArgsError;
+    pathStartIdx = 0;
     costMatrix[0][0] = ppfDistanceMatrix[0][0];
     distanceMatrix[0][0] = ppfDistanceMatrix[0][0];
     for (int i = 1; i < m_numCols; i++) {
@@ -87,13 +88,23 @@ Error_t CDtw::process(float **ppfDistanceMatrix)
     for (int i = 1; i < m_numRows; i++) {
         for (int j = 1; j < m_numCols; j++) {
             distanceMatrix[i][j] = ppfDistanceMatrix[i][j];
-            float minVal = std::min(costMatrix[i-1][j], std::min(costMatrix[i][j-1], costMatrix[i-1][j-1]));
-            costMatrix[i][j] = minVal + ppfDistanceMatrix[i][j];
-            // for performance
-            directMatrix[i][j] = (minVal == costMatrix[i-1][j]) + (minVal == costMatrix[i-1][j-1]) * 2;
+//            float minVal = std::min(costMatrix[i-1][j], std::min(costMatrix[i][j-1], costMatrix[i-1][j-1]));
+//            costMatrix[i][j] = minVal + ppfDistanceMatrix[i][j];
+//            // for performance
+//            directMatrix[i][j] = (minVal == costMatrix[i-1][j]) + (minVal == costMatrix[i-1][j-1]) * 2;
+            if (costMatrix[i-1][j] < costMatrix[i][j-1] && costMatrix[i-1][j] < costMatrix[i-1][j-1]){
+                directMatrix[i][j] = kVert;
+                costMatrix[i][j] = costMatrix[i-1][j] + ppfDistanceMatrix[i][j];
+            } else if (costMatrix[i][j-1] < costMatrix[i-1][j] && costMatrix[i][j-1] < costMatrix[i-1][j-1]) {
+                directMatrix[i][j] = kHoriz;
+                costMatrix[i][j] = costMatrix[i][j-1] + ppfDistanceMatrix[i][j];
+            } else {
+                directMatrix[i][j] = kDiag;
+                costMatrix[i][j] = costMatrix[i-1][j-1] + ppfDistanceMatrix[i][j];
+            }
         }
     }
-    for (int i = m_numRows + m_numCols - 1, curRow=m_numRows-1, curCol=m_numCols-1; !(curRow == 0 && curCol == 0); i--) {
+    for (int i = m_numRows + m_numCols - 1, curRow=m_numRows-1, curCol=m_numCols-1; curRow+curCol != 0; i--) {
         resMatrix[i][0] = curRow;
         resMatrix[i][1] = curCol;
         int direct = directMatrix[curRow][curCol];
