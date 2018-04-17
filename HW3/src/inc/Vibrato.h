@@ -84,7 +84,6 @@ public:
 	* @param iNumberOfFrames frames/samples  in the input buffer 
 	*/
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
-
 private:
     CLfo                *m_pCLfo;
     CRingBuffer<float>  **m_ppCRingBuffer;

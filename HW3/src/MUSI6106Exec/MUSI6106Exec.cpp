@@ -6,12 +6,14 @@
 
 #include "AudioFileIf.h"
 #include "Vibrato.h"
+#include <thread>
 
 using std::cout;
 using std::endl;
 
 // local function declarations
 void    showClInfo ();
+void callFromThread(CAudioFileIf *phAudioFile, CAudioFileIf *phOutputFile, int kBlockSize, float** ppfAudioData, float** ppfOutputData, CVibrato* pcVibrato );
 
 /////////////////////////////////////////////////////////////////////////////////
 // main function
@@ -71,13 +73,19 @@ int main(int argc, char* argv[])
     }
     //////////////////////////////////////////////////////////////////////////////
     // process file
-    while (!phAudioFile->isEof())
-    {
-        long long iNumFrames = kBlockSize;
-        phAudioFile->readData(ppfAudioData, iNumFrames);
-        pcVibrato->process(ppfAudioData, ppfOutputData, iNumFrames);
-        phOutputFile->writeData(ppfOutputData, iNumFrames);
-    }
+//    while (!phAudioFile->isEof())
+//    {
+//        long long iNumFrames = kBlockSize;
+//        phAudioFile->readData(ppfAudioData, iNumFrames);
+//        pcVibrato->process(ppfAudioData, ppfOutputData, iNumFrames);
+//        phOutputFile->writeData(ppfOutputData, iNumFrames);
+//    }
+    
+    std::thread t1(callFromThread);
+    std::cout << "executing" << std::endl;
+    
+    t1.join();
+    
     //////////////////////////////////////////////////////////////////////////////
     // clean-up
     CAudioFileIf::destroy(phAudioFile);
@@ -92,6 +100,17 @@ int main(int argc, char* argv[])
     ppfAudioData = 0;
     ppfOutputData = 0;
     return 0;
+}
+
+void callFromThread(CAudioFileIf *phAudioFile, CAudioFileIf *phOutputFile, int kBlockSize, float** ppfAudioData, float** ppfOutputData, CVibrato* pcVibrato ) {
+    while (!phAudioFile->isEof())
+    {
+        long long iNumFrames = kBlockSize;
+        phAudioFile->readData(ppfAudioData, iNumFrames);
+        pcVibrato->process(ppfAudioData, ppfOutputData, iNumFrames);
+        phOutputFile->writeData(ppfOutputData, iNumFrames);
+    }
+    
 }
 
 void     showClInfo()
