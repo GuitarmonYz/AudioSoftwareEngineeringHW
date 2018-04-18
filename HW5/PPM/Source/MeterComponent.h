@@ -12,7 +12,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <cmath>
-#include <iostream>
 
 //==============================================================================
 /*
@@ -59,12 +58,10 @@ public:
     }
     
     void setValue(float ppmValue) {
-        std::cout<<ppmValue<<std::endl;
         if (ppmValue < m_epsilon) {
             ppmValue = m_epsilon;
         }
         m_barHight = 20 * log10(ppmValue);
-//        std::cout<<m_barHight<<std::endl;
         repaint();
     }
 

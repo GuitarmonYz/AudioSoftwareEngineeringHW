@@ -188,6 +188,10 @@ float* PpmAudioProcessor::getCurPpmVal() {
     return m_OutputVal;
 }
 
+int PpmAudioProcessor::getNumOfChannels() {
+    return getNumInputChannels();
+}
+
 //==============================================================================
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
