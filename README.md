@@ -10,3 +10,5 @@ HW2: implementing a comb filter given designed structure, with FIR and IIR
 HW3: implementing vibrato effect, with self designed interface and LFO class
 
 HW4: implementing vibrato plugin using JUCE and API developed in HW3
+
+HW5: implementing PPM API and integrate to a juce plug-in

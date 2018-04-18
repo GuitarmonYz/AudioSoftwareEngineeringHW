@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT name="Vibrato-Plugin" projectType="audioplug" buildStandalone="1"
-              jucerVersion="5.3.0">
+              jucerVersion="5.3.1" pluginFormats="buildStandalone">
   <MAINGROUP id="KJN6P9" name="Vibrato-Plugin">
     <GROUP id="{287974FF-FFCF-5946-0D48-05F3D10A9ABD}" name="VibratoAPI">
       <FILE id="XO7QXJ" name="ErrorDef.h" compile="0" resource="0" file="/Users/zhaoyan/workstuff/GatechStuff/6106/AudioSoftwareEngineeringHW/HW4/Vibrato-Plugin/Source/ErrorDef.h"/>
