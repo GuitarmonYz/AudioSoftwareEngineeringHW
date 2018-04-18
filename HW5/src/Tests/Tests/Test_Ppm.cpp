@@ -38,6 +38,7 @@ SUITE(Ppm)
         float* groundTruth = 0;
         int numOfBlocks = 2;
     };
+    
     TEST_FIXTURE(PpmData, ValidFunctionArgs) {
         pPpm->init();
         CHECK_EQUAL(kFunctionInvalidArgsError, pPpm->process(testData, outputBuffer, 3));
@@ -67,6 +68,7 @@ SUITE(Ppm)
             CHECK_ARRAY_CLOSE(groundTruth, outputBuffer, numOfChannels, 1e-3);
         }
     }
+    
     TEST_FIXTURE(PpmData, DcInput) {
         pPpm->init();
         testData = new float*[numOfChannels];
@@ -88,6 +90,7 @@ SUITE(Ppm)
             CHECK_ARRAY_CLOSE(groundTruth, outputBuffer, numOfChannels, 1e-3);
         }
     }
+    
     TEST_FIXTURE(PpmData, SinInput) {
         pPpm->init();
         testData = new float*[numOfChannels];
@@ -108,6 +111,7 @@ SUITE(Ppm)
             CHECK_ARRAY_CLOSE(groundTruth, outputBuffer, numOfChannels, 1e-3);
         }
     }
+    
     TEST_FIXTURE(PpmData, SawInput) {
         pPpm->init();
         testData = new float*[numOfChannels];
@@ -133,8 +137,6 @@ SUITE(Ppm)
             CHECK_ARRAY_CLOSE(groundTruth, outputBuffer, numOfChannels, 1e-3);
         }
     }
-    
-    
 }
 
 #endif //WITH_TESTS
