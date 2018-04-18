@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Source/PluginEditor.cpp"
-            timestampString = "545715785.215378"
+            filePath = "../../../src/Ppm/Ppm.cpp"
+            timestampString = "545723947.368138"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "PpmAudioProcessorEditor::timerCallback()"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "CPpm::process(float **ppfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../src/Ppm/Ppm.cpp"
-            timestampString = "545715785.2155221"
+            timestampString = "545723947.368585"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "CPpm::process(float **ppfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "CPpm::CPpm(int sampleRate, int numOfChannels)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

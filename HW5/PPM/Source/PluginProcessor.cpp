@@ -29,6 +29,8 @@ PpmAudioProcessor::PpmAudioProcessor()
 
 PpmAudioProcessor::~PpmAudioProcessor()
 {
+    CPpm::destroyInstance(m_Ppm);
+    delete [] m_OutputVal;
 }
 
 //==============================================================================
@@ -99,6 +101,7 @@ void PpmAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     CPpm::createInstance(m_Ppm, sampleRate, getNumInputChannels());
+    m_Ppm->init();
     m_OutputVal = new float[getNumOutputChannels()];
 }
 

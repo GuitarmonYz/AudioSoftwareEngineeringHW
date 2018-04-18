@@ -43,11 +43,11 @@ public:
         if (m_barHight > -12) {
             g.setColour(Colours::green);
             int pos_x = 0;
-            int pos_y = getHeight() * (m_barHight/12);
+            int pos_y = getHeight() * (-m_barHight/12);
             int width = getWidth();
             int height = getHeight() - pos_y;
             g.fillRect(pos_x, pos_y, width, height);
-            g.fillRect(pos_x, pos_y, width, height);
+            g.drawRect(pos_x, pos_y, width, height);
         }
     }
 
@@ -58,8 +58,8 @@ public:
         
     }
     
-    void setValue(float ppmValue){
-//        std::cout<<ppmValue<<std::endl;
+    void setValue(float ppmValue) {
+        std::cout<<ppmValue<<std::endl;
         m_barHight = 20 * log10(ppmValue);
 //        std::cout<<m_barHight<<std::endl;
         repaint();

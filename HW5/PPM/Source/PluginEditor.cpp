@@ -25,6 +25,7 @@ PpmAudioProcessorEditor::PpmAudioProcessorEditor (PpmAudioProcessor& p)
 PpmAudioProcessorEditor::~PpmAudioProcessorEditor()
 {
     stopTimer();
+    
 }
 
 //==============================================================================
@@ -41,7 +42,7 @@ void PpmAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
-    rectangle.setBounds(0, 0, 50, 100);
+    rectangle.setBounds(0, 0, 50, 200);
 }
 
 void PpmAudioProcessorEditor::timerCallback() {
