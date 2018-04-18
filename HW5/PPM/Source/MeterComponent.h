@@ -60,6 +60,9 @@ public:
     
     void setValue(float ppmValue) {
         std::cout<<ppmValue<<std::endl;
+        if (ppmValue < m_epsilon) {
+            ppmValue = m_epsilon;
+        }
         m_barHight = 20 * log10(ppmValue);
 //        std::cout<<m_barHight<<std::endl;
         repaint();
@@ -68,4 +71,5 @@ public:
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PpmBar)
     float m_barHight;
+    float m_epsilon = 1e-5;
 };

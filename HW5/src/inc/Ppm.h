@@ -21,7 +21,7 @@ protected:
 private:
     float m_alpha_AT;
     float m_alpha_RT;
-    float* m_preBlockVal;
+    float* m_preVal;
     int m_fs;
     int m_numOfChannels;
     bool m_isInitialized = false;
