@@ -18,9 +18,6 @@ PpmAudioProcessorEditor::PpmAudioProcessorEditor (PpmAudioProcessor& p)
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (700, 300);
-    
-    
-    
     startTimer(10);
 }
 
@@ -56,6 +53,11 @@ void PpmAudioProcessorEditor::resized()
     
     for (int i = 0; i < processor.getNumOfChannels(); i++) {
         rectangles.at(i)->setBounds(40 * i + 20, 20, 35, 200);
+    }
+    if (getWidth() < 60*(processor.getNumOfChannels()-1)) {
+        setSize(60*(processor.getNumOfChannels()), 300);
+    } else {
+        setSize(400, 300);
     }
 }
 

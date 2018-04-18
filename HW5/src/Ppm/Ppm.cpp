@@ -64,7 +64,7 @@ Error_t CPpm::process(float **ppfInputBuffer, float *pfOutputBuffer, int iNumber
     if (ppfInputBuffer == nullptr || pfOutputBuffer == nullptr || iNumberOfFrames < 0) return kFunctionInvalidArgsError;
 
     for (int i = 0; i < m_numOfChannels; i++) {
-        float max_val = -10000;
+        float max_val = -MAXFLOAT;
         float ppm_out = 0;
         for (int j = 0; j < iNumberOfFrames; j++) {
             float abs_input = fabsf(ppfInputBuffer[i][j]);
